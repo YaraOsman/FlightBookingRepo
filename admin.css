@@ -17,6 +17,7 @@ body{
     background-color: #0505057e;
     height: fit-content;
 }
+
 .tab-btns{
     display: flex;
     justify-content: center;
