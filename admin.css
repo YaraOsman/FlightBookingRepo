@@ -117,20 +117,22 @@ body{
     border: 2px solid darkgray;
     border-radius: 3px;
 }
+.inputcontainer-flight > div > .imglabel{
+        font-size:13px;
+        color: black; 
+        width: 60%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+}
+
 .imgbtn{
     padding: 1px 3px;
     margin: 4px 6px 4px 8px;
     width: 110px;
     font-size: 11px;
 }
-.imglabel{
-    font-size:13px;
-    color: black; 
-    width: 60%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+
 .inputcontainer-flight input{
     border: 1.5px solid rgb(198, 197, 197);
     border-radius: 3px;
