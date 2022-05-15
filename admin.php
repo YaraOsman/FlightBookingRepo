@@ -41,7 +41,7 @@
           height="auto" style="margin-top: 3px" />
         </div>
         <div class="inputcontainer-user">
-          <input type="text" placeholder="Password" name="password" required />
+          <input type="password" placeholder="Password" name="password" required />
           <img src="images/pass-icon.png" width="15px" height="auto" alt="" />
         </div>
         <div class="inputcontainer-user">
@@ -49,11 +49,16 @@
           <img src="images/user-icon.png" width="15px" height="auto" alt="" />
         </div>
         <div class="inputcontainer-user">
-          <input type="text" placeholder="Phone" name="phone" required />
+          <input type="tel" placeholder="Phone" name="phone" required />
           <img src="images/tel-icon.png" width="12px" height="auto" alt="" />
         </div>
         <div class="inputcontainer-user">
-          <input type="text" placeholder="Role" name="role" required />
+          <select name="role" required>
+            <option value="role" selected disabled hidden>Role</option>
+            <option value="admin">Admin</option>
+            <option value="moderator">Moderator</option>
+            <option value="user">User</option>
+          </select>
           <img src="images/role-icon.jpg" width="15px" height="auto" alt="" />
         </div>
         <?php 
