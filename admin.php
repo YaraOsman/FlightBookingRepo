@@ -66,7 +66,7 @@
             $dt= $date->format('Y-m-d\TH:i:s');
            ?>
         <div class="inputcontainer-user">
-          <input type="any" type="datetime-local" name="udate" value='<?php echo $dt; ?>' />
+          <input step="any" type="datetime-local" name="udate" value='<?php echo $dt; ?>' />
           <img src="images/date-icon.png" width="15px" height="auto" alt="" />
         </div>
         
@@ -107,10 +107,10 @@
 
         <div class="inputcontainer-flight">
           <label for="type">Type</label>
-          <select name="type" required>
+          <select name="type" id="type" required>
             <option value="type" selected disabled hidden>Type</option>
-            <option value="one way">One Way Trip</option>
-            <option value="round">Round Trip</option>
+            <option value="one way trip">One Way Trip</option>
+            <option value="round trip">Round Trip</option>
           </select>
         </div>
           <?php 
@@ -124,7 +124,7 @@
         
         <div class="inputcontainer-flight">
           <label for="state">State</label>
-          <select name="state" required>
+          <select name="state" id="state" required>
             <option value="state" selected disabled hidden>State</option>
             <option value="available">Available</option>
             <option value="unavailable">Unavailable</option>
@@ -305,10 +305,9 @@ function getFlightRowIndex(index){
   form.elements[3].value = index.cells[2].innerText
   const dte = (index.cells[4].innerText).replace(' ','T')
   form.elements[4].value = dte;
-  form.elements[5].value = index.cells[7].innerText
-  form.elements[6].value = index.cells[5].innerText
+  form.elements[5].value = index.cells[5].innerText
+  form.elements[6].value = index.cells[7].innerText
   form.elements[7].value = index.cells[3].innerText
-  
   document.getElementById('imglbl').innerText = index.cells[6].innerText
 
 }
