@@ -41,7 +41,7 @@
           height="auto" style="margin-top: 3px" />
         </div>
         <div class="inputcontainer-user">
-          <input type="text" placeholder="Password" name="password" required />
+          <input type="password" placeholder="Password" name="password" required />
           <img src="images/pass-icon.png" width="15px" height="auto" alt="" />
         </div>
         <div class="inputcontainer-user">
@@ -49,11 +49,16 @@
           <img src="images/user-icon.png" width="15px" height="auto" alt="" />
         </div>
         <div class="inputcontainer-user">
-          <input type="text" placeholder="Phone" name="phone" required />
+          <input type="tel" placeholder="Phone" name="phone" required />
           <img src="images/tel-icon.png" width="12px" height="auto" alt="" />
         </div>
         <div class="inputcontainer-user">
-          <input type="text" placeholder="Role" name="role" required />
+          <select name="role" required>
+            <option value="role" selected disabled hidden>Role</option>
+            <option value="admin">Admin</option>
+            <option value="moderator">Moderator</option>
+            <option value="user">User</option>
+          </select>
           <img src="images/role-icon.jpg" width="15px" height="auto" alt="" />
         </div>
         <?php 
@@ -92,17 +97,21 @@
 
         <div class="inputcontainer-flight">
           <label for="country">Country</label>
-          <input type="text" placeholder="country" name="country" />
+          <input type="text" placeholder="Country" name="country" />
         </div>
 
         <div class="inputcontainer-flight">
           <label for="description">Description</label>
-          <input type="text" placeholder="description" name="description" />
+          <input type="text" placeholder="Description" name="description" />
         </div>
 
         <div class="inputcontainer-flight">
           <label for="type">Type</label>
-          <input type="text" placeholder="type" name="type" />
+          <select name="type" required>
+            <option value="type" selected disabled hidden>Type</option>
+            <option value="one way">One Way Trip</option>
+            <option value="round">Round Trip</option>
+          </select>
         </div>
           <?php 
             $date = new DateTime();
@@ -113,10 +122,13 @@
           <input step="any" type="datetime-local" name="date" value='<?php echo $dt; ?>'>  
         </div>
         
-
         <div class="inputcontainer-flight">
           <label for="state">State</label>
-          <input type="state" name="state" placeholder="state"/>
+          <select name="state" required>
+            <option value="state" selected disabled hidden>State</option>
+            <option value="available">Available</option>
+            <option value="unavailable">Unavailable</option>
+          </select>
         </div>
 
         <div class="inputcontainer-flight">
@@ -126,15 +138,17 @@
 
         <div class="inputcontainer-flight">
           <label for="price">Price</label>
-          <input type="text" placeholder="price" name="price" />
+          <input type="number" placeholder="Price" name="price" />
         </div>
 
         <div class="inputcontainer-flight">
           <label for="imgurl">Image URL</label>
           <div>
+
              <button id="imgbtn" type="button" name="img" class="imgbtn" onclick="openInput()" onsubmit="false">choose image</button>
              <label id="imglbl" for="img" class="imglabel">No file choosen</label>
              <input style='display: none;' onchange="onInputChange()" id="openFile" type="file" placeholder="image url" name="imgurl" accept="image/x-png,image/gif,image/jpeg,image/jpg"/>
+
           </div>
         </div>
 
