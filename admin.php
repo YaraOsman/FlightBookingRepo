@@ -97,17 +97,21 @@
 
         <div class="inputcontainer-flight">
           <label for="country">Country</label>
-          <input type="text" placeholder="country" name="country" />
+          <input type="text" placeholder="Country" name="country" />
         </div>
 
         <div class="inputcontainer-flight">
           <label for="description">Description</label>
-          <input type="text" placeholder="description" name="description" />
+          <input type="text" placeholder="Description" name="description" />
         </div>
 
         <div class="inputcontainer-flight">
           <label for="type">Type</label>
-          <input type="text" placeholder="type" name="type" />
+          <select name="type" required>
+            <option value="type" selected disabled hidden>Type</option>
+            <option value="one way">One Way Trip</option>
+            <option value="round">Round Trip</option>
+          </select>
         </div>
           <?php 
             $date = new DateTime();
@@ -118,27 +122,30 @@
           <input type="datetime-local" name="date" value='<?php echo $dt; ?>'>  
         </div>
         
-
         <div class="inputcontainer-flight">
           <label for="state">State</label>
-          <input type="state" name="state" placeholder="state"/>
+          <select name="state" required>
+            <option value="state" selected disabled hidden>State</option>
+            <option value="available">Available</option>
+            <option value="unavailable">Unavailable</option>
+          </select>
         </div>
 
         <div class="inputcontainer-flight">
           <label for="airline">Airline</label>
-          <input type="text" placeholder="Airline" name="airline" />
+          <input type="text" placeholder="Airline" name="Airline" />
         </div>
 
         <div class="inputcontainer-flight">
           <label for="price">Price</label>
-          <input type="text" placeholder="price" name="price" />
+          <input type="number" placeholder="Price" name="price" />
         </div>
 
         <div class="inputcontainer-flight">
           <label for="imgurl">Image URL</label>
           <div>
-             <button name="img" class="imgbtn">choose image</button>
-             <label for="img" class="imglabel">No file choosen</label>
+             <button name="img" class="imgbtn">Choose image</button>
+             <label for="img" class="imglabel">No file chosen</label>
              <input style='display:none;' type="file" placeholder="image url"name="imgurl" accept="image/x-png,image/gif,image/jpeg,image/jpg"/>
           </div>
         </div>
