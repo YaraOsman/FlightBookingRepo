@@ -133,7 +133,7 @@
 
         <div class="inputcontainer-flight">
           <label for="airline">Airline</label>
-          <input type="text" placeholder="Airline" name="Airline" />
+          <input type="text" placeholder="Airline" name="airline" />
         </div>
 
         <div class="inputcontainer-flight">
