@@ -32,7 +32,7 @@
         <h2>User Form</h2>
 
         <div class="inputcontainer-user">
-          <input type="text" placeholder="User ID" name="userid" disabled/>
+          <input type="text" placeholder="User ID" name="userid" readonly/>
           <img src="images/user-icon.png" width="15px" height="auto" alt="" />
         </div>
         <div class="inputcontainer-user">
@@ -61,7 +61,7 @@
             $dt= $date->format('Y-m-d\TH:i:s');
            ?>
         <div class="inputcontainer-user">
-          <input type="datetime-local" name="udate" value='<?php echo $dt; ?>' />
+          <input type="any" type="datetime-local" name="udate" value='<?php echo $dt; ?>' />
           <img src="images/date-icon.png" width="15px" height="auto" alt="" />
         </div>
         
@@ -86,8 +86,8 @@
         <h2>Available Flights</h2>
 
         <div class="inputcontainer-flight">
-          <label for="afid">Flight ID</label>
-          <input type="text" placeholder="Flight ID" disabled />
+          <label for="aaid">Flight ID</label>
+          <input type="text" placeholder="Flight ID" name="flightid" readonly />
         </div>
 
         <div class="inputcontainer-flight">
@@ -110,7 +110,7 @@
            ?>
         <div class="inputcontainer-flight">
           <label for="date">Date</label>
-          <input type="datetime-local" name="date" value='<?php echo $dt; ?>'>  
+          <input step="any" type="datetime-local" name="date" value='<?php echo $dt; ?>'>  
         </div>
         
 
@@ -132,9 +132,9 @@
         <div class="inputcontainer-flight">
           <label for="imgurl">Image URL</label>
           <div>
-             <button name="img" class="imgbtn">choose image</button>
-             <label for="img" class="imglabel">No file choosen</label>
-             <input style='display:none;' type="file" placeholder="image url"name="imgurl" accept="image/x-png,image/gif,image/jpeg,image/jpg"/>
+             <button id="imgbtn" type="button" name="img" class="imgbtn" onclick="openInput()" onsubmit="false">choose image</button>
+             <label id="imglbl" for="img" class="imglabel">No file choosen</label>
+             <input style='display: none;' onchange="onInputChange()" id="openFile" type="file" placeholder="image url" name="imgurl" accept="image/x-png,image/gif,image/jpeg,image/jpg"/>
           </div>
         </div>
 
@@ -285,31 +285,23 @@ function getUserRowIndex(index){
 
 function getFlightRowIndex(index){
   var form = document.getElementById("showFlight")
-  form.elements[0].value=index.cells[0].innerText
-  form.elements[1].value=index.cells[1].innerText
-  form.elements[2].value=index.cells[8].innerText
-  form.elements[3].value=index.cells[2].innerText
+  form.elements[0].value = index.cells[0].innerText
+  form.elements[1].value = index.cells[1].innerText
+  form.elements[2].value = index.cells[8].innerText
+  form.elements[3].value = index.cells[2].innerText
   const dte = (index.cells[4].innerText).replace(' ','T')
-  form.elements[4].value=dte;
-  form.elements[5].value=index.cells[7].innerText
-  form.elements[6].value=index.cells[5].innerText
-  form.elements[7].value=index.cells[3].innerText
+  form.elements[4].value = dte;
+  form.elements[5].value = index.cells[7].innerText
+  form.elements[6].value = index.cells[5].innerText
+  form.elements[7].value = index.cells[3].innerText
   
-  form.elements[8].value='sdfsdfss'
-
-
-
+  document.getElementById('imglbl').innerText = index.cells[6].innerText
 
 }
 
 </script>
 
 
-<?php  
-    $date = "12-05-2022 12:123 AM";  
-    $newDate = date("Y-m-d\TH:i a", strtotime($date));  
-    echo $newDate;  
-?>  
 
   </body>
 </html>

@@ -21,8 +21,8 @@ $aaid = (int)$row[0]+1;
 }
 //this will change the date format to 10-May-2022
 $timestamp = strtotime($date);	 
-$ldate = str_replace('T',' ',date("d-m-Y H:i", $timestamp));
-$hdate = "to_date('$ldate','DD-MM-YYYY HH24:MI')";
+$ldate = str_replace('T',' ',date("d-m-Y H:i:s", $timestamp));
+$hdate = "to_date('$ldate','DD-MM-YYYY HH24:MI:SS')";
 
 $sql = "insert into airline_available(AAID,country,description,type,price,AAdate,state,imgurl,preferredAirline)values('$aaid','$country','$description','$type','$price',$hdate,'$state','$imgurl','$airline')";
 $add_airline=oci_parse($connection,$sql);
@@ -33,10 +33,15 @@ flight();
 }else if(isset($_POST['flightupdate'])){
 	flight();
 }else if(isset($_POST['flightdelete'])){
-	flight();
+	echo "<script>
+    const yesno = confirm('Are you sure you want to delete it?');
+    if( yesno == true){
+       ".deleteflight()."
+    }
+    </script>";
 }
 
-$get_airlines = oci_parse($connection,"select AAID,country,description,type,price,to_char(AADate,'YYYY-MM-DD HH24:MI'),state,imgurl,preferredAirline from airline_available order by AAID desc");
+$get_airlines = oci_parse($connection,"select AAID,country,description,type,price,to_char(AADate,'YYYY-MM-DD HH24:MI:SS'),state,imgurl,preferredAirline from airline_available order by AAID desc");
 oci_execute($get_airlines);
 
 function flight(){
@@ -46,7 +51,19 @@ document.getElementById('showUser').style.display = 'none'
 document.getElementById('flight').style.backgroundColor = 'black'
 document.getElementById('user').style.backgroundColor = '#0505057e'
 document.getElementById('flighttbl').style.display = 'flex'
+document.getElementById('usertbl').style.display = 'none'
 </script>";
+}
+function deleteflight(){
+    global $connection;
+   if(isset($_POST['flightid'])){
+       $aaid = (int)$_POST['flightid'];
+       $sql = "delete airline_available where aaid = $aaid";
+       $delete_flight = oci_parse($connection,$sql);
+       oci_execute($delete_flight);
+   }
+ 
+    flight();
 }
 
 ?>

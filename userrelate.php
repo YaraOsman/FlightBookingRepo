@@ -18,8 +18,8 @@ while(($row = oci_fetch_array($users_id,OCI_BOTH)) != false){
 $usid = (int)$row[0]+1;
 }
 $timestamp = strtotime($date);	 
-$ldate = str_replace('T',' ',date("d-m-Y H:i", $timestamp));
-$hdate = "to_date('$ldate','DD-MM-YYYY HH24:MI')";
+$ldate = str_replace('T',' ',date("d-m-Y H:i:s", $timestamp));
+$hdate = "to_date('$ldate','DD-MM-YYYY HH24:MI:SS')";
 
 
 $sql = "insert into users(USID,name,email,phoneNo,password,role,userdate)values('$usid','$username','$email','$phone','$password','$role',$hdate)";
@@ -33,13 +33,13 @@ user();
     echo "<script>
     const yesno = confirm('Are you sure you want to delete it?');
     if( yesno == true){
-       ".delete()."
+       ".deleteuser()."
     }
     </script>";
 
 }
 
-$get_users = oci_parse($connection,"select USID,name,email,phoneNo,password,role,to_char(userdate,'YYYY-MM-DD HH24:MI') from users order by USID desc");
+$get_users = oci_parse($connection,"select USID,name,email,phoneNo,password,role,to_char(userdate,'YYYY-MM-DD HH24:MI:SS') from users order by USID desc");
 oci_execute($get_users);
 
 function user(){
@@ -55,8 +55,7 @@ function user(){
     ";
 }
 
-function delete(){
-    echo "<script> console.log('nooooo99')</script>";
+function deleteuser(){
     global $connection;
    if(isset($_POST['userid'])){
        $usid = (int)$_POST['userid'];
