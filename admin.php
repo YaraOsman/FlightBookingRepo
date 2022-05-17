@@ -109,8 +109,8 @@
           <label for="type">Type</label>
           <select name="type" id="type" required>
             <option value="type" selected disabled hidden>Type</option>
-            <option value="one way trip">One Way Trip</option>
-            <option value="round trip">Round Trip</option>
+            <option value="One Way Trip">One Way Trip</option>
+            <option value="Round Trip">Round Trip</option>
           </select>
         </div>
           <?php 
@@ -126,8 +126,8 @@
           <label for="state">State</label>
           <select name="state" id="state" required>
             <option value="state" selected disabled hidden>State</option>
-            <option value="available">Available</option>
-            <option value="unavailable">Unavailable</option>
+            <option value="Available">Available</option>
+            <option value="Unavailable">Unavailable</option>
           </select>
         </div>
 
@@ -186,8 +186,8 @@
             <th style="width: 90px;">User ID</th>
             <th style="width: 115px;">User Name</th>
             <th style="width: 200px;">Email</th>
-            <th style="width: 90px;">Password</th>
             <th style="width: 110px; padding: 0px;" >Phone No</th>
+            <th style="width: 90px;">Password</th>
             <th style="width: 100px; padding: 0px;">Role</th>
             <th style="width: 100px; padding: 0px;">Date</th>
           </tr> 
@@ -205,8 +205,8 @@
             <td class="text-left tdu1" style="width: 86px; padding: 3px;"><?php echo isset($row[0])?$row[0]:'' ?></td>
             <td class="text-left tdu2" style="width: 110px; padding: 3px;"><?php echo isset($row[1])?$row[1]:'' ?></td>
             <td class="text-left tdu3" style="width: 112px; padding: 3px;"><?php echo isset($row[2])?$row[2]:'' ?></td>
-            <td class="text-left tdu4" style="width: 122px;  padding: 3px;"><?php echo isset($row[4])?$row[4]:'' ?></td>
             <td class="text-left tdu5" style="width: 105px;  padding: 3px;"><?php echo isset($row[3])?$row[3]:'' ?></td>
+            <td class="text-left tdu4" style="width: 122px;  padding: 3px;"><?php echo isset($row[4])?$row[4]:'' ?></td>
             <td class="text-left tdu6" style="width: 95px;  padding: 3px;"><?php echo isset($row[5])?$row[5]:'' ?></td>
             <td class="text-left tdu6" style="width: 95px;  padding: 3px;"><?php echo isset($row[6])?$row[6]:'' ?></td>
           </tr>
@@ -285,10 +285,10 @@
 function getUserRowIndex(index){
   var form = document.getElementById("showUser")
   form.elements[0].value=index.cells[0].innerText
-  form.elements[1].value=index.cells[1].innerText
-  form.elements[2].value=index.cells[2].innerText
-  form.elements[3].value=index.cells[3].innerText
-  form.elements[4].value=index.cells[4].innerText
+  form.elements[1].value=index.cells[2].innerText
+  form.elements[2].value=index.cells[4].innerText
+  form.elements[3].value=index.cells[1].innerText
+  form.elements[4].value=index.cells[3].innerText
   form.elements[5].value=index.cells[5].innerText
   // this two lines will convert space to T because the <input type"datetime-local"> only accept this type of format "d-m-yTh:i"
   const dte = (index.cells[6].innerText).replace(' ','T')
@@ -302,7 +302,7 @@ function getFlightRowIndex(index){
   form.elements[0].value = index.cells[0].innerText
   form.elements[1].value = index.cells[1].innerText
   form.elements[2].value = index.cells[8].innerText
-  form.elements[3].value = index.cells[2].innerText
+  form.elements[3].value = "Round Trip"
   const dte = (index.cells[4].innerText).replace(' ','T')
   form.elements[4].value = dte;
   form.elements[5].value = index.cells[5].innerText

@@ -31,14 +31,24 @@ oci_execute($add_airline);
 flight();
 
 }else if(isset($_POST['flightupdate'])){
-	flight();
+    if(isset($_POST['flightid'])){
+        echo "<script>
+        const yesno = confirm('Are you sure you want to update it?');
+        if( yesno == true){
+           ".updateflight()."
+        }
+        </script>";
+    }
 }else if(isset($_POST['flightdelete'])){
+    
+    if(isset($_POST['flightid'])){
 	echo "<script>
     const yesno = confirm('Are you sure you want to delete it?');
     if( yesno == true){
        ".deleteflight()."
     }
     </script>";
+}
 }
 
 $get_airlines = oci_parse($connection,"select AAID,country,description,type,price,to_char(AADate,'YYYY-MM-DD HH24:MI:SS'),state,imgurl,preferredAirline from airline_available order by AAID desc");
@@ -56,14 +66,32 @@ document.getElementById('usertbl').style.display = 'none'
 }
 function deleteflight(){
     global $connection;
-   if(isset($_POST['flightid'])){
+  
        $aaid = (int)$_POST['flightid'];
        $sql = "delete airline_available where aaid = $aaid";
        $delete_flight = oci_parse($connection,$sql);
        oci_execute($delete_flight);
-   }
+   
  
     flight();
+}
+
+function updateflight(){
+        global $connection,$country,$description,$type,$price,$date,$state,$imgurl,$airline;
+    
+        $timestamp = strtotime($date);	 
+        $ldate = str_replace('T',' ',date("d-m-Y H:i:s", $timestamp));
+        $hdate = "to_date('$ldate','DD-MM-YYYY HH24:MI:SS')";
+    
+    
+        $aaid = (int)$_POST['flightid'];
+        $sql = "update airline_available set country='$country',description='$description',type='$type',price=$price,aadate=$hdate,state='$state',imgurl='$imgurl',preferredAirline='$airline' where aaid = $aaid";
+        $update_flight = oci_parse($connection,$sql);
+        oci_execute($update_flight);
+    
+    
+     flight();
+
 }
 
 ?>

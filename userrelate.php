@@ -27,15 +27,26 @@ $add_users=oci_parse($connection,$sql);
 oci_execute($add_users);
 user();
 }else if(isset($_POST['userupdate'])){
-	user();
+	
+    if(isset($_POST['userid'])){
+        echo "<script>
+        const yesno = confirm('Are you sure you want to update it?');
+        if( yesno == true){
+           ".updateuser()."
+        }
+        </script>";
+    }
+
 }else if(isset($_POST['userdelete'])){
 
+    if(isset($_POST['userid'])){
     echo "<script>
     const yesno = confirm('Are you sure you want to delete it?');
     if( yesno == true){
        ".deleteuser()."
     }
     </script>";
+}
 
 }
 
@@ -57,14 +68,30 @@ function user(){
 
 function deleteuser(){
     global $connection;
-   if(isset($_POST['userid'])){
        $usid = (int)$_POST['userid'];
        $sql = "delete users where usid = $usid";
        $delete_users = oci_parse($connection,$sql);
        oci_execute($delete_users);
-   }
+   
  
     user();
+}
+
+function updateuser(){
+    global $connection,$email,$username,$password,$phone,$role,$date;
+
+    $timestamp = strtotime($date);	 
+    $ldate = str_replace('T',' ',date("d-m-Y H:i:s", $timestamp));
+    $hdate = "to_date('$ldate','DD-MM-YYYY HH24:MI:SS')";
+
+
+    $usid = (int)$_POST['userid'];
+    $sql = "update users set email='$email',password='$password',name='$username',phoneNo=$phone,role='$role',userdate=$hdate where usid = $usid";
+    $update_users = oci_parse($connection,$sql);
+    oci_execute($update_users);
+
+
+ user();
 }
 
 
