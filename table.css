@@ -30,7 +30,7 @@ margin-bottom: 0px;
   height: 800px;
   text-align: start;
   overflow-x: auto;
-  width: 900px;
+  width: 1300px;
   margin-bottom: 50px;
 }
 .search-container{
@@ -65,7 +65,7 @@ margin-bottom: 0px;
   font-weight: 500;
   padding: 5px 10px;
   cursor: pointer;
- margin: 5px;
+  margin: 5px;
 }
 
 .bodydiv{
@@ -175,22 +175,25 @@ td {
 }
 
 .tdu1{
-  max-width: 86px;
+  max-width: 90px;
 }
 .tdu2{
-  max-width: 110px;
+  max-width: 115px;
 }
 .tdu3{
-  max-width: 190px;
+  max-width: 200px;
 }
 .tdu4{
-  max-width: 122px;
+  max-width: 110px;
 }
 .tdu5{
-  max-width: 105px;
+  max-width: 90px;
 }
 .tdu6{
-  max-width: 95px;
+  max-width: 100px;
+}
+.tdu7{
+  max-width: 100px;
 }
 
 

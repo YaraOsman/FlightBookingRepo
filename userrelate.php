@@ -47,11 +47,34 @@ user();
     }
     </script>";
 }
+}
+$get_users;
+$sql = "select USID,name,email,phoneNo,password,role,to_char(userdate,'YYYY-MM-DD HH24:MI:SS') from users order by USID desc";
+if(isset($_POST['usersearch'])){
+    global $connection;
+    global $get_users;
+    global $sql;
+   
+    $name = isset($_POST['u_name_s'])?$_POST['u_name_s']:'';
+    $email = isset($_POST['u_email_s'])?$_POST['u_email_s']:'';
+    $phone = isset($_POST['u_phone_s'])?(int)$_POST['u_phone_s']:'';
+    $role = isset($_POST['u_role_s'])?$_POST['u_role_s']:'';
+    $date = isset($_POST['u_date_s'])?$_POST['u_date_s']:'';
+    $sql = "select USID,name,email,phoneNo,password,role,to_char(userdate,'YYYY-MM-DD HH24:MI:SS') from users where name like '%$name%' and email like '%$email%' and phoneNo like '%$phone%' and role like '%$role%' order by USID desc";
+    $get_users = oci_parse($connection,$sql);
+    oci_execute($get_users);
+
+ user();
 
 }
+if(isset($_POST['showall'])){
+    $sql = "select USID,name,email,phoneNo,password,role,to_char(userdate,'YYYY-MM-DD HH24:MI:SS') from users order by USID desc";
+}
 
-$get_users = oci_parse($connection,"select USID,name,email,phoneNo,password,role,to_char(userdate,'YYYY-MM-DD HH24:MI:SS') from users order by USID desc");
+
+$get_users = oci_parse($connection,$sql);
 oci_execute($get_users);
+
 
 function user(){
     echo "

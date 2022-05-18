@@ -49,7 +49,7 @@
           <img src="images/user-icon.png" width="15px" height="auto" alt="" />
         </div>
         <div class="inputcontainer-user">
-          <input type="tel" placeholder="Phone" name="phone" required />
+          <input type="text" placeholder="Phone" name="phone" required oninput="this.value = this.value.replace(/[^+0-9]/g, '').replace(/^(\+.?)\+/g, '$1').replace(/(\+.*)\+/g, '$1');" />
           <img src="images/tel-icon.png" width="12px" height="auto" alt="" />
         </div>
         <div class="inputcontainer-user">
@@ -138,7 +138,7 @@
 
         <div class="inputcontainer-flight">
           <label for="price">Price</label>
-          <input type="number" placeholder="Price" name="price" />
+          <input type="text" placeholder="Price" name="price" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
         </div>
 
         <div class="inputcontainer-flight">
@@ -171,11 +171,18 @@
 <!-- user table -->
 <div id="usertbl">
    <div class="search-container">
+     <form action="" method="post">
       <h4 class="search-header">Search By:</h4>
-      <input class="search-input" type="text" placeholder="Name">
-      <input class="search-input" type="text" placeholder="Role">
-      <input class="search-input" type="date">
-      <button class="search-btn">Search</button>
+      <input class="search-input" name="u_name_s" type="text" placeholder="Name">
+      <input class="search-input" name="u_email_s" type="text" placeholder="Email">
+      <input class="search-input" name="u_phone_s" type="text" oninput="this.value = this.value.replace(/[^+0-9]/g, '').replace(/^(\+.?)\+/g, '$1').replace(/(\+.*)\+/g, '$1');" placeholder="Phone">
+      <input class="search-input" name="u_role_s" type="text" placeholder="Role">
+      <input class="search-input" name="u_date_s" type="date">
+      <button class="search-btn" name="usersearch" >Search</button>
+      <button class="search-btn" name="showall" >Show All</button>
+
+    </form>
+    
     </div>
 <div class="maintbldiv">
  
@@ -202,13 +209,13 @@
        while(($row = oci_fetch_array($get_users,OCI_BOTH)) != false){
         ?>
           <tr onclick='getUserRowIndex(this)'>
-            <td class="text-left tdu1" style="width: 86px; padding: 3px;"><?php echo isset($row[0])?$row[0]:'' ?></td>
-            <td class="text-left tdu2" style="width: 110px; padding: 3px;"><?php echo isset($row[1])?$row[1]:'' ?></td>
-            <td class="text-left tdu3" style="width: 112px; padding: 3px;"><?php echo isset($row[2])?$row[2]:'' ?></td>
-            <td class="text-left tdu5" style="width: 105px;  padding: 3px;"><?php echo isset($row[3])?$row[3]:'' ?></td>
-            <td class="text-left tdu4" style="width: 122px;  padding: 3px;"><?php echo isset($row[4])?$row[4]:'' ?></td>
-            <td class="text-left tdu6" style="width: 95px;  padding: 3px;"><?php echo isset($row[5])?$row[5]:'' ?></td>
-            <td class="text-left tdu6" style="width: 95px;  padding: 3px;"><?php echo isset($row[6])?$row[6]:'' ?></td>
+            <td class="text-left tdu1" style="width: 90px; padding: 3px;"><?php echo isset($row[0])?$row[0]:'' ?></td>
+            <td class="text-left tdu2" style="width: 115px; padding: 3px;"><?php echo isset($row[1])?$row[1]:'' ?></td>
+            <td class="text-left tdu3" style="width: 200px; padding: 3px;"><?php echo isset($row[2])?$row[2]:'' ?></td>
+            <td class="text-left tdu5" style="width: 110px;  padding: 3px;"><?php echo isset($row[3])?$row[3]:'' ?></td>
+            <td class="text-left tdu4" style="width: 90px;  padding: 3px;"><?php echo isset($row[4])?$row[4]:'' ?></td>
+            <td class="text-left tdu6" style="width: 100px;  padding: 3px;"><?php echo isset($row[5])?$row[5]:'' ?></td>
+            <td class="text-left tdu7" style="width: 100px;  padding: 3px;"><?php echo isset($row[6])?$row[6]:'' ?></td>
           </tr>
        <?php } ?>
        
@@ -226,11 +233,11 @@
 
 <div class="search-container">
     <h4 class="search-header">Search By:</h4>
-    <input class="search-input" type="text" placeholder="Country Name">
-    <input class="search-input" type="text" placeholder="Type">
-    <input class="search-input" type="text" placeholder="Price">
-    <input class="search-input" type="date">
-    <button class="search-btn">Search</button>
+    <input class="search-input" name="f_country_s" type="text" placeholder="Country Name">
+    <input class="search-input" name="f_type_s" type="text" placeholder="Type">
+    <input class="search-input" name="f_price_s" type="text" placeholder="Price">
+    <input class="search-input" name="f_date_s" type="date">
+    <button class="search-btn" name="flightsearch">Search</button>
   </div>
 <div class="maintbldiv" >
   
