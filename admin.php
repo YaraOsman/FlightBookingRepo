@@ -176,7 +176,12 @@
       <input class="search-input" name="u_name_s" type="text" placeholder="Name">
       <input class="search-input" name="u_email_s" type="text" placeholder="Email">
       <input class="search-input" name="u_phone_s" type="text" oninput="this.value = this.value.replace(/[^+0-9]/g, '').replace(/^(\+.?)\+/g, '$1').replace(/(\+.*)\+/g, '$1');" placeholder="Phone">
-      <input class="search-input" name="u_role_s" type="text" placeholder="Role">
+      <select name="u_role_s" class="search-input">
+            <option value="Role" selected disabled hidden>Role</option>
+            <option value="Admin">Admin</option>
+            <option value="Moderator">Moderator</option>
+            <option value="User">User</option>
+      </select>
       <input class="search-input" name="u_date_s" type="date">
       <button class="search-btn" name="usersearch" >Search</button>
       <button class="search-btn" name="showall" >Show All</button>
@@ -190,13 +195,13 @@
       <table class="table-fill">
         
           <tr >
-            <th style="width: 90px;">User ID</th>
-            <th style="width: 115px;">User Name</th>
-            <th style="width: 200px;">Email</th>
-            <th style="width: 110px; padding: 0px;" >Phone No</th>
-            <th style="width: 90px;">Password</th>
-            <th style="width: 100px; padding: 0px;">Role</th>
-            <th style="width: 100px; padding: 0px;">Date</th>
+            <th style="width: 96px; padding: 6px 0px;">User ID</th>
+            <th style="width: 125px; padding: 6px 0px;">User Name</th>
+            <th style="width: 220px; padding: 6px 0px;">Email</th>
+            <th style="width: 97px; padding: 6px 0px;" >Phone No</th>
+            <th style="width: 98px; padding: 6px 0px;">Password</th>
+            <th style="width: 90px; padding: 6px 0px;">Role</th>
+            <th style="width: 110px; padding: 6px 0px;">Date</th>
           </tr> 
       </table>
     </div>
@@ -209,13 +214,13 @@
        while(($row = oci_fetch_array($get_users,OCI_BOTH)) != false){
         ?>
           <tr onclick='getUserRowIndex(this)'>
-            <td class="text-left tdu1" style="width: 90px; padding: 3px;"><?php echo isset($row[0])?$row[0]:'' ?></td>
-            <td class="text-left tdu2" style="width: 115px; padding: 3px;"><?php echo isset($row[1])?$row[1]:'' ?></td>
-            <td class="text-left tdu3" style="width: 200px; padding: 3px;"><?php echo isset($row[2])?$row[2]:'' ?></td>
-            <td class="text-left tdu5" style="width: 110px;  padding: 3px;"><?php echo isset($row[3])?$row[3]:'' ?></td>
-            <td class="text-left tdu4" style="width: 90px;  padding: 3px;"><?php echo isset($row[4])?$row[4]:'' ?></td>
-            <td class="text-left tdu6" style="width: 100px;  padding: 3px;"><?php echo isset($row[5])?$row[5]:'' ?></td>
-            <td class="text-left tdu7" style="width: 100px;  padding: 3px;"><?php echo isset($row[6])?$row[6]:'' ?></td>
+            <td class="text-left tdu1" ><?php echo isset($row[0])?$row[0]:'' ?></td>
+            <td class="text-left tdu2" ><?php echo isset($row[1])?$row[1]:'' ?></td>
+            <td class="text-left tdu3" ><?php echo isset($row[2])?$row[2]:'' ?></td>
+            <td class="text-left tdu4" ><?php echo isset($row[3])?$row[3]:'' ?></td>
+            <td class="text-left tdu5" ><?php echo isset($row[4])?$row[4]:'' ?></td>
+            <td class="text-left tdu6" ><?php echo isset($row[5])?$row[5]:'' ?></td>
+            <td class="text-left tdu7" ><?php echo isset($row[6])?$row[6]:'' ?></td>
           </tr>
        <?php } ?>
        
@@ -232,12 +237,25 @@
 <div id="flighttbl">
 
 <div class="search-container">
+  <form action="" method="POST">
     <h4 class="search-header">Search By:</h4>
-    <input class="search-input" name="f_country_s" type="text" placeholder="Country Name">
-    <input class="search-input" name="f_type_s" type="text" placeholder="Type">
-    <input class="search-input" name="f_price_s" type="text" placeholder="Price">
-    <input class="search-input" name="f_date_s" type="date">
-    <button class="search-btn" name="flightsearch">Search</button>
+    <input class="search-input finpt" name="f_country_s" type="text" placeholder="Country Name">
+    <select name="f_type_s" class="search-input search-select">
+      <option value="type" selected disabled hidden>Type</option>
+      <option value="One Way Trip">One Way Trip</option>
+      <option value="Round Trip">Round Trip</option>
+    </select>
+    <select name="f_state_s" class="search-input search-select">
+      <option value="state" selected disabled hidden>State</option>
+      <option value="Available">Available</option>
+      <option value="Unavailable">Unavailable</option>
+    </select>
+    <button class="search-btn fbtn" name="flightsearch">Search</button>
+    <input class="search-input finpt" name="f_airline_s" type="text" placeholder="Airline">
+    <input class="search-input finpt" name="f_price_s" type="text" placeholder="Price" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+    <input class="search-input finpt" name="f_date_s" type="date">
+    <button class="search-btn fbtn" name="showallflight" >Show All</button>
+       </form>
   </div>
 <div class="maintbldiv" >
   

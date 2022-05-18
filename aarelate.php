@@ -51,7 +51,43 @@ flight();
 }
 }
 
-$get_airlines = oci_parse($connection,"select AAID,country,description,type,price,to_char(AADate,'YYYY-MM-DD HH24:MI:SS'),state,imgurl,preferredAirline from airline_available order by AAID desc");
+
+$get_airlines;
+$sqlf = "select AAID,country,description,type,price,to_char(AADate,'YYYY-MM-DD HH24:MI:SS'),state,imgurl,preferredAirline from airline_available order by AAID desc";
+if(isset($_POST['flightsearch'])){
+    global $connection;
+    global $get_airlines;
+    global $sqlf;
+   
+    $country = isset($_POST['f_country_s'])?$_POST['f_country_s']:'';
+    $type = isset($_POST['f_type_s'])?$_POST['f_type_s']:'';
+    $state = isset($_POST['f_state_s'])?$_POST['f_state_s']:'';
+    $airline = isset($_POST['f_airline_s'])?$_POST['f_airline_s']:'';
+    $price = isset($_POST['f_price_s'])?$_POST['f_price_s']:'';
+    $date = isset($_POST['f_date_s'])?$_POST['f_date_s']:'';
+
+    $hdate = "";
+    if($date != ""){
+        $timestamp = strtotime($date);	 
+        $ldate = date("d-m-Y", $timestamp);
+        $hdate = "and trunc(AAdate) like to_date('$ldate','DD-MM-YYYY')";
+      
+    }
+
+    $sqlf = "select AAID,country,description,type,price,to_char(AADate,'YYYY-MM-DD HH24:MI:SS'),state,imgurl,preferredAirline from airline_available where country like '%$country%' and type like '%$type%' and state like '%$state%' and preferredAirline like '%$airline%' and price like '%$price%' $hdate order by AAID desc";
+    $get_airlines = oci_parse($connection,$sqlf);
+    oci_execute($get_airlines);
+
+ flight();
+
+}
+
+if(isset($_POST['showallflight'])){
+    $sqlf = "select AAID,country,description,type,price,to_char(AADate,'YYYY-MM-DD HH24:MI:SS'),state,imgurl,preferredAirline from airline_available order by AAID desc";
+    flight();
+}
+
+$get_airlines = oci_parse($connection,$sqlf);
 oci_execute($get_airlines);
 
 function flight(){

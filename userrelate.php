@@ -6,7 +6,7 @@ $email = isset($_POST['email'])?$_POST['email']:'';
 $password = isset($_POST['password'])?$_POST['password']:'';
 $username = isset($_POST['username'])?$_POST['username']:'';
 $phone = isset($_POST['phone'])?(int)$_POST['phone']:'';
-$role = isset($_POST['role'])?$_POST['role']:'';
+$role = isset($_POST['role'])?strtolower($_POST['role']):'';
 $date = isset($_POST['udate'])?$_POST['udate']:'';
 
  
@@ -48,6 +48,7 @@ user();
     </script>";
 }
 }
+
 $get_users;
 $sql = "select USID,name,email,phoneNo,password,role,to_char(userdate,'YYYY-MM-DD HH24:MI:SS') from users order by USID desc";
 if(isset($_POST['usersearch'])){
@@ -58,9 +59,18 @@ if(isset($_POST['usersearch'])){
     $name = isset($_POST['u_name_s'])?$_POST['u_name_s']:'';
     $email = isset($_POST['u_email_s'])?$_POST['u_email_s']:'';
     $phone = isset($_POST['u_phone_s'])?(int)$_POST['u_phone_s']:'';
-    $role = isset($_POST['u_role_s'])?$_POST['u_role_s']:'';
+    $role = isset($_POST['u_role_s'])?strtolower($_POST['u_role_s']):'';
     $date = isset($_POST['u_date_s'])?$_POST['u_date_s']:'';
-    $sql = "select USID,name,email,phoneNo,password,role,to_char(userdate,'YYYY-MM-DD HH24:MI:SS') from users where name like '%$name%' and email like '%$email%' and phoneNo like '%$phone%' and role like '%$role%' order by USID desc";
+    $hdate = "";
+    if($date != ""){
+        $timestamp = strtotime($date);	 
+        $ldate = date("d-m-Y", $timestamp);
+        $hdate = "and trunc(userdate) like to_date('$ldate','DD-MM-YYYY')";
+      
+    }
+    
+
+    $sql = "select USID,name,email,phoneNo,password,role,to_char(userdate,'YYYY-MM-DD HH24:MI:SS') from users where name like '%$name%' and email like '%$email%' and phoneNo like '%$phone%' and role like '%$role%' $hdate order by USID desc";
     $get_users = oci_parse($connection,$sql);
     oci_execute($get_users);
 

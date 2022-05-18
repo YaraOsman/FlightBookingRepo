@@ -14,7 +14,7 @@
   margin:auto;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   animation: float 5s infinite;
-  width: 1300px
+  width: 1000px
   
 }
 
@@ -30,7 +30,7 @@ margin-bottom: 0px;
   height: 800px;
   text-align: start;
   overflow-x: auto;
-  width: 1300px;
+  width: 900px;
   margin-bottom: 50px;
 }
 .search-container{
@@ -39,7 +39,8 @@ margin-bottom: 0px;
   justify-content: center;
   align-self: center;
   flex-wrap: wrap;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  width: 900px;
 }
 .search-header{
   font-weight: 500;
@@ -52,6 +53,7 @@ margin-bottom: 0px;
   outline: none;
   padding: 5px;
   margin: 5px;
+  width: 287px;
 }
 .search-input:focus{
   border-color: #04aa6d;
@@ -66,11 +68,16 @@ margin-bottom: 0px;
   padding: 5px 10px;
   cursor: pointer;
   margin: 5px;
+  width: 136px;
 }
-
+.search-select{
+  height: 33px;
+  width: 237px;
+}
 .bodydiv{
   overflow-y: scroll;
 }
+
 
 
 th {
@@ -85,6 +92,10 @@ th {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   vertical-align:middle;
   width: 250px;
+}
+
+.finpt{
+  width: 237px;
 }
 
 th:first-child {
@@ -107,6 +118,10 @@ tr:hover td {
   background:#4E5066;
   color:#FFFFFF;
   border-top: 1px solid #22262e;
+  overflow: visible;
+  text-overflow: initial;
+  white-space: initial;
+  
 }
  
 tr:first-child {
@@ -173,35 +188,38 @@ td {
 .tdf9{
   max-width: 299px;
 }
+ 
+
 
 .tdu1{
-  max-width: 90px;
+  max-width: 96px;
+  width:96px;
 }
 .tdu2{
-  max-width: 115px;
+  max-width: 125px;
+  width: 125px;
 }
 .tdu3{
-  max-width: 200px;
+  max-width: 220px;
+  width: 220px;
 }
 .tdu4{
-  max-width: 110px;
+  max-width: 97px;
+  width: 97px;
 }
 .tdu5{
-  max-width: 90px;
+  max-width: 98px;
+  width: 98px; 
 }
 .tdu6{
-  max-width: 100px;
+  max-width: 90px;
+  width: 90px; 
 }
 .tdu7{
-  max-width: 100px;
+  max-width: 110px;
+  width: 110px;
 }
 
-
-tr:hover td{
-  overflow: visible;
-  text-overflow: initial;
-  white-space: initial;
-}
 
 td:last-child {
   border-right: 0px;
@@ -209,6 +227,7 @@ td:last-child {
 
 .text-left {
   text-align: center;
+  padding: 3px;
 }
 #usertbl{
   margin-top: 150px;
@@ -222,3 +241,4 @@ td:last-child {
   flex-direction: column;
   align-items: center;
 }
+
