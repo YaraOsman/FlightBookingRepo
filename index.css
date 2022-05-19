@@ -521,6 +521,15 @@ nav {
   height: 17px;
 }
 
+#matchpass{
+  display: none;
+  color: red;
+  font-size: 14px
+}
+.log-out{
+  display: none;
+}
+
 @media screen and (max-width: 992px) {
   nav {
     padding: 0;

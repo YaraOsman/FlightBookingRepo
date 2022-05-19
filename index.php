@@ -31,7 +31,6 @@
         </div>
 
         <!--Leftside nav end-->
-<?php echo "<script> console.log('1111111111111')</script>"; ?>
         <div class="rightside-nav">
           <!-- search box when screen size more than 992px-->
           <div class="searchBox_">
@@ -54,14 +53,10 @@
               <a href="#packages">Packages</a>
             </li>
             <li>
-              <a href="#login">Login</a>
+              <a href="#login" id="log-in1">Login</a>
+              <a href="#logout" id="logout1">Logout</a>
             </li>
-            <li>
-              <a href="#reviews">Reviews</a>
-            </li>
-            <li>
-              <a href="#feedback">Feedback</a>
-            </li>
+            
             <li>
               <a href="#about">About us</a>
             </li>
@@ -101,13 +96,8 @@
             <a class="navlink" href="#packages">Packages</a>
           </li>
           <li>
-            <a class="navlink" href="#login">Login</a>
-          </li>
-          <li>
-            <a class="navlink" href="#reviews">Reviews</a>
-          </li>
-          <li>
-            <a class="navlink" href="#feedback">Feedback</a>
+            <a class="navlink" href="#login" id="log-in2">Login</a>
+            <a id="logout2" >Logout</a>
           </li>
           <li>
             <a class="navlink" href="#about">About us</a>
@@ -127,7 +117,7 @@
 Lorem ipsum dolor sit amet consectetur Totam eo
 sit quod. Ab omnis eos vel nesciunt quod beatae.
 Lorem, ipsum dolor.
-        </pre
+          </pre
           >
         </div>
       </div>
@@ -145,7 +135,10 @@ Lorem, ipsum dolor.
         oci_execute($airline_available);
        ?>
       <?php 
-       while(($row = oci_fetch_array($airline_available,OCI_BOTH)) != false){ 
+      if(oci_fetch_array($airline_available,OCI_BOTH) == false){
+        echo "There is no flight yet..";
+      }
+       while(($row = oci_fetch_array($airline_available,OCI_BOTH)) != false){
          ?>
         <!--First box-->
         <div class="packages-box">
@@ -174,6 +167,73 @@ Lorem, ipsum dolor.
         ?>
         
         
+      </div>
+    </div>
+
+
+
+    <!--Login-->
+    <div id="login">
+      <header class="login-header">
+        <h3>Login</h3>
+        <img src="images/avatar.jpg" alt="avatar" />
+      </header>
+      <div class="loginform-container">
+        <form class="login-form" action="">
+          <label class="login-label" for="email">Email</label>
+          <input class="login-input" type="email" placeholder="Enter Email" required />
+          <label class="login-label" for="pass">Password</label>
+          <input class="login-input" type="password" placeholder="Enter Password" required />
+          <div class="loginform-button">
+            <button type="submit">Login</button>
+            <p>Forgot <a href="#">password?</a></p>
+          </div>
+          <div class="loginform-footer">
+            <p>Don't have an account?<a href="#signup"> Sign up</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!--Sign Up-->
+    <div id="signup">
+      <div class="signup-container">
+        <div class="signup-header">
+          <h1>Sign Up</h1>
+          <p>Please fill in this form to create an account.</p>
+          <hr />
+        </div>
+        <form class="signup-form" action="" method="POST" id="signupfrm">
+          <label class="signupform-label" for="email">Email</label>
+          <input class="signupform-input" name="email_su" type="email" placeholder="Enter Email" required />
+
+          <label class="signupform-label" for="username">Create Username</label>
+          <input class="signupform-input" name="username_su" type="text" placeholder="Username" required />
+          
+          <label class="signupform-label" for="pass">Password</label>
+          <input class="signupform-input" id="password1_su" name="password1_su" type="password" placeholder="Enter Password" required />
+         
+          <label class="signupform-label" for="rpass">Repeat Password</label>
+          <input class="signupform-input" id="password2_su" name="password2_su" type="password" placeholder="Repeat Password" required />
+         
+          <label class="signupform-label" for="phoneNo">Phone Number</label>
+          <input class="signupform-input" name="phone_su" type="text" placeholder="Phone Number" required
+           oninput="this.value = this.value.replace(/[^+0-9]/g, '').replace(/^(\+.?)\+/g, '$1').replace(/(\+.*)\+/g, '$1');" />
+          
+          <div>
+            <label class="signupform-label" for="checkbox">Remember me</label>
+            <input type="checkbox" />
+          </div>
+          <label id="matchpass" for="passerr">sdf</label>
+          <p>
+            By creating an account you agree to our
+            <a href="#">Terms & Privacy</a>.
+          </p>
+          <div class="signupform-button">
+            <button type="button">Cancel</button>
+            <button type="submit" name="signup">Sign Up</button>
+          </div>
+        </form>
       </div>
     </div>
 
@@ -231,6 +291,21 @@ Lorem, ipsum dolor.
 
     <script src="jquery-3.6.0.min.js"></script>
     <script src="index.js"></script> 
+    <?php require('userrelate.php'); ?>
+    <script>
+    $('#signupfrm').submit(function() {
+      if($('#password1_su').val().length <8){
+        $("label[for = passerr]").text("The password length must more than 7 !!");
+        document.getElementById('matchpass').style.display = 'initial'
+        return false;
+      }else if($('#password1_su').val() != $('#password2_su').val()){
+        $("label[for = passerr]").text("Password doesn\'t match !!!");
+       document.getElementById('matchpass').style.display = 'initial'
+       return false;
+     }else 
+       return true;
+    });
+</script>
     
     
     

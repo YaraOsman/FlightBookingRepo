@@ -90,6 +90,10 @@ if(isset($_POST['showallflight'])){
 $get_airlines = oci_parse($connection,$sqlf);
 oci_execute($get_airlines);
 
+
+
+
+
 function flight(){
 echo "<script> 
 document.getElementById('showFlight').style.display = 'flex'
@@ -100,6 +104,7 @@ document.getElementById('flighttbl').style.display = 'flex'
 document.getElementById('usertbl').style.display = 'none'
 </script>";
 }
+
 function deleteflight(){
     global $connection;
   

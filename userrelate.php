@@ -1,5 +1,6 @@
 <?php
 include('conn.php');
+$emailLoggedIn = null;
 
 $usid=0;
 $email = isset($_POST['email'])?$_POST['email']:'';
@@ -84,6 +85,49 @@ if(isset($_POST['showall'])){
 
 $get_users = oci_parse($connection,$sql);
 oci_execute($get_users);
+
+
+if(isset($_POST['signup'])){
+    $usid=0;
+    $email = isset($_POST['email_su'])?$_POST['email_su']:'';
+    $password1 = isset($_POST['password1_su'])?$_POST['password1_su']:'';
+    $password2 = isset($_POST['password2_su'])?$_POST['password2_su']:'';
+    $username = isset($_POST['username_su'])?$_POST['username_su']:'';
+    $phone = isset($_POST['phone_su'])?(int)$_POST['phone_su']:'';
+    $role = 'user';
+    $dt = new DateTime();
+
+    $date= $dt->format('Y-m-d\TH:i:s');
+    $timestamp = strtotime($date);	 
+    $ldate = str_replace('T',' ',date("d-m-Y H:i:s", $timestamp));
+    $hdate = "to_date('$ldate','DD-MM-YYYY HH24:MI:SS')";
+
+    $users_id=oci_parse($connection,'select max(USID) from users');
+    oci_execute($users_id);
+    while(($row = oci_fetch_array($users_id,OCI_BOTH)) != false){
+      $usid = (int)$row[0]+1;
+    }
+
+        $sql = "insert into users(USID,name,email,phoneNo,password,role,userdate)values('$usid','$username','$email','$phone','$password1','$role',$hdate)";
+        $add_users=oci_parse($connection,$sql);
+        oci_execute($add_users);
+   
+        echo "<script>
+        document.getElementById('matchpass').style.display = 'none'
+        document.getElementById('signup').style.display = 'none'
+        document.getElementById('login').style.display = 'none'
+        document.getElementById('logout1').style.display = 'initial'
+        document.getElementById('logout2').style.display = 'initial'
+        document.getElementById('log-in1').style.display = 'none'
+        document.getElementById('log-in2').style.display = 'none'
+
+        </script>";
+    $emailLoggedIn = $email;
+
+
+}
+
+
 
 
 function user(){
