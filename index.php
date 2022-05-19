@@ -31,7 +31,7 @@
         </div>
 
         <!--Leftside nav end-->
-
+<?php echo "<script> console.log('1111111111111')</script>"; ?>
         <div class="rightside-nav">
           <!-- search box when screen size more than 992px-->
           <div class="searchBox_">
