@@ -19,11 +19,4 @@ $("#logout").click(function(){
 });
 });
 
-/* function to close side navbar when you click anywhere except the side navbar */
-$(document).ready(function(){
-$('body').click(function(){ 
-  if(!$('.menu-class').is(':hover') && !$('#mySidenav').is(':hover')){
-    document.getElementById("mySidenav").style.width = "0";
-}
-});
-});
+
