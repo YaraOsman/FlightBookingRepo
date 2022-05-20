@@ -1,6 +1,5 @@
 <?php
 include('conn.php');
-$emailLoggedIn = null;
 
 $usid=0;
 $email = isset($_POST['email'])?$_POST['email']:'';
@@ -116,14 +115,36 @@ if(isset($_POST['signup'])){
         document.getElementById('matchpass').style.display = 'none'
         document.getElementById('signup').style.display = 'none'
         document.getElementById('login').style.display = 'none'
-        document.getElementById('logout1').style.display = 'initial'
-        document.getElementById('logout2').style.display = 'initial'
-        document.getElementById('log-in1').style.display = 'none'
-        document.getElementById('log-in2').style.display = 'none'
-
+        $('#email-addr').text('$email');
         </script>";
-    $emailLoggedIn = $email;
 
+    $infos->LoggedInInfo['email'] = $email;
+    $infos->LoggedInInfo['username'] = $username;
+
+}
+
+if(isset($_POST['logingbtn'])){
+    $email = isset($_POST['login-email'])?$_POST['login-email']:'';
+    $password = isset($_POST['login-password'])?$_POST['login-password']:'';
+
+    $users_id=oci_parse($connection,'select email,password,name from users');
+    oci_execute($users_id);
+    while(($row = oci_fetch_array($users_id,OCI_BOTH)) != false){
+      if($email == $row[0] && $password == $row[1]){
+          echo "<script>alert('you logged in successfully')</script>";
+          $_SESSION["email"] = $row[0];
+          $_SESSION["username"] = $row[2];
+          
+          return;
+      }else{
+          echo "
+          <script>
+          $('label[for = loginerr]').text('Username or Password is incorrect !!!!')
+          document.getElementById('loginerr').style.display = 'initial'
+          </script>";
+          return;
+      }
+    }
 
 }
 

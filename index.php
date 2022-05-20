@@ -1,4 +1,4 @@
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,6 +15,7 @@
    
   </head>
   <body>
+    
     <!--Home-->
     <div id="home">
       <!--Home navbar-->
@@ -34,17 +35,11 @@
         <div class="rightside-nav">
           <!-- search box when screen size more than 992px-->
           <div class="searchBox_">
-            <input
-              class="searchInput"
-              type="text"
-              name=""
-              placeholder="Search"
-            />
+            <input class="searchInput" type="text" name="" placeholder="Search"/>
             <div class="searchButton" href="#">
               <img src="images/srch.png" class="searchimg" />
             </div>
           </div>
-
           <ul>
             <li>
               <a href="#home">Home</a>
@@ -53,17 +48,32 @@
               <a href="#packages">Packages</a>
             </li>
             <li>
-              <a href="#login" id="log-in1">Login</a>
-              <a href="#logout" id="logout1">Logout</a>
+             
+            <?php 
+            $lgin;
+            $lgout;
+          
+            if($_SESSION["email"] == null){
+              $lgin = "initial";
+              $lgout = "none";
+            }
+            else{
+            $lgin = "none";
+            $lgout = "initial";
+            }
+
+             ?>
+              <a href="#login" id="log-in1"  style="display: <?php echo $lgin ?>;">Login</a>
+              <a href="#logout" id="logout1" style="display: <?php echo $lgout ?>; ">Logout</a>
             </li>
             
             <li>
               <a href="#about">About us</a>
             </li>
-            <li>
-              <a href="admin.php">user</a>
-            </li>
           </ul>
+          <div onclick="openNav()" class="hidden-leftsidenav2">
+            <img src="images/menu-24.png" class="menu-class" />
+          </div>
         </div>
 
         <!-- search box when screen size less than 992px-->
@@ -85,7 +95,7 @@
             <img class="sidenavlogin-img" src="images/pic-1.png" alt="" />
           </div>
           <div class="sidenavlogin-content">
-            <p>User Name</p>
+            <p id="email-addr">email</p>
           </div>
         </div>
         <ul id="ul">
@@ -96,8 +106,8 @@
             <a class="navlink" href="#packages">Packages</a>
           </li>
           <li>
-            <a class="navlink" href="#login" id="log-in2">Login</a>
-            <a id="logout2" >Logout</a>
+            <a class="navlink" href="#login" id="log-in2" style= <?php $LoggedInInfos['email']==null?"display: initial":"display: none" ?> >Login</a>
+            <a id="logout2"  style= <?php $LoggedInInfos['email']==null?"display:none":"display:initial" ?>>Logout</a>
           </li>
           <li>
             <a class="navlink" href="#about">About us</a>
@@ -179,13 +189,14 @@ Lorem, ipsum dolor.
         <img src="images/avatar.jpg" alt="avatar" />
       </header>
       <div class="loginform-container">
-        <form class="login-form" action="">
+        <form id="loginfrm" class="login-form" action="" method="POST">
           <label class="login-label" for="email">Email</label>
-          <input class="login-input" type="email" placeholder="Enter Email" required />
+          <input class="login-input" id="login-email" name="login-email" type="email" placeholder="Enter Email" required />
           <label class="login-label" for="pass">Password</label>
-          <input class="login-input" type="password" placeholder="Enter Password" required />
+          <input class="login-input" id="login-password" name="login-password" type="password" placeholder="Enter Password" required />
+          <label for="loginerr" class="err" id="loginerr"></label>
           <div class="loginform-button">
-            <button type="submit">Login</button>
+            <button type="submit" name="logingbtn">Login</button>
             <p>Forgot <a href="#">password?</a></p>
           </div>
           <div class="loginform-footer">
@@ -224,7 +235,7 @@ Lorem, ipsum dolor.
             <label class="signupform-label" for="checkbox">Remember me</label>
             <input type="checkbox" />
           </div>
-          <label id="matchpass" for="passerr">sdf</label>
+          <label class="err" id="matchpass" for="passerr"></label>
           <p>
             By creating an account you agree to our
             <a href="#">Terms & Privacy</a>.
@@ -290,7 +301,7 @@ Lorem, ipsum dolor.
    
 
     <script src="jquery-3.6.0.min.js"></script>
-    <script src="index.js"></script> 
+    <script src="index.js"></script>
     <?php require('userrelate.php'); ?>
     <script>
     $('#signupfrm').submit(function() {
@@ -305,9 +316,17 @@ Lorem, ipsum dolor.
      }else 
        return true;
     });
+
+    $('#loginfrm').submit(function() {
+      if($('#login-password').val().length <8){
+        $("label[for = loginerr]").text("The password length must more than 7 !!");
+        document.getElementById('loginerr').style.display = 'initial'
+        return false;
+      }else 
+       return true;
+    });
 </script>
-    
-    
+ 
     
   </body>
 </html>

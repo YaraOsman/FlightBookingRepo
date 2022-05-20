@@ -26,11 +26,14 @@ nav {
 }
 .hidden-leftsidenav {
   display: none;
-  margin-left: 2px;
+  margin-left: 4px;
 }
 .hidden-leftsidenav img {
   cursor: pointer;
   width: 3.5vw;
+}
+.hidden-leftsidenav2{
+margin: 6px 9px 0px 3px;
 }
 .leftside-nav a {
   font-weight: 400;
@@ -92,6 +95,13 @@ nav {
   align-items: center;
   padding: 8px 0px 30px 0px;
 }
+
+.logged img{
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  margin: 0px;
+}
 .sidenavlogin-img{
   border-radius: 50%;
   width: 100px;
@@ -99,9 +109,26 @@ nav {
 }
 .sidenavlogin-content p{
   font-size: 20px ;
-  color: #fff;
+  color: white;
   text-align: center;
+  width: 220px;
+  overflow-x: scroll;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  scroll-behavior: initial;
+
 }
+.sidenavlogin-content p::-webkit-scrollbar{
+  height: 6px;
+  border-radius: 5px;
+}
+
+.sidenavlogin-content p::-webkit-scrollbar-thumb{
+  background-color: #313535;
+  border-radius: 5px;
+}
+
+
 /* The navigation menu links */
 .sidenav a {
   padding: 8px 8px 8px 32px;
@@ -521,13 +548,10 @@ nav {
   height: 17px;
 }
 
-#matchpass{
+.err{
   display: none;
   color: red;
   font-size: 14px
-}
-.log-out{
-  display: none;
 }
 
 @media screen and (max-width: 992px) {
