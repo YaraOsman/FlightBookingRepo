@@ -116,6 +116,7 @@ margin: 6px 9px 0px 3px;
   text-overflow: ellipsis;
   white-space: nowrap;
   scroll-behavior: initial;
+  
 
 }
 .sidenavlogin-content p::-webkit-scrollbar{
@@ -552,6 +553,10 @@ margin: 6px 9px 0px 3px;
   display: none;
   color: red;
   font-size: 14px
+}
+
+#logout1{
+  display: none;
 }
 
 @media screen and (max-width: 992px) {

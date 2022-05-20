@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,23 +48,9 @@
               <a href="#packages">Packages</a>
             </li>
             <li>
-             
-            <?php 
-            $lgin;
-            $lgout;
-          
-            if($_SESSION["email"] == null){
-              $lgin = "initial";
-              $lgout = "none";
-            }
-            else{
-            $lgin = "none";
-            $lgout = "initial";
-            }
-
-             ?>
-              <a href="#login" id="log-in1"  style="display: <?php echo $lgin ?>;">Login</a>
-              <a href="#logout" id="logout1" style="display: <?php echo $lgout ?>; ">Logout</a>
+            
+              <a href="#login" id="log-in1">Login</a>
+              <a href="#logout" id="logout1">Logout</a>
             </li>
             
             <li>
@@ -90,7 +76,7 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
           >&times;</a
         >
-        <div class="sidenav-login">
+        <div class="sidenav-login" id="sidenav-login">
           <div>
             <img class="sidenavlogin-img" src="images/pic-1.png" alt="" />
           </div>
@@ -106,8 +92,8 @@
             <a class="navlink" href="#packages">Packages</a>
           </li>
           <li>
-            <a class="navlink" href="#login" id="log-in2" style= <?php $LoggedInInfos['email']==null?"display: initial":"display: none" ?> >Login</a>
-            <a id="logout2"  style= <?php $LoggedInInfos['email']==null?"display:none":"display:initial" ?>>Logout</a>
+            <a class="navlink" href="#login" id="log-in2">Login</a>
+            <a id="logout2" >Logout</a>
           </li>
           <li>
             <a class="navlink" href="#about">About us</a>
@@ -301,32 +287,9 @@ Lorem, ipsum dolor.
    
 
     <script src="jquery-3.6.0.min.js"></script>
-    <script src="index.js"></script>
+    <script src="main.js"></script>
     <?php require('userrelate.php'); ?>
-    <script>
-    $('#signupfrm').submit(function() {
-      if($('#password1_su').val().length <8){
-        $("label[for = passerr]").text("The password length must more than 7 !!");
-        document.getElementById('matchpass').style.display = 'initial'
-        return false;
-      }else if($('#password1_su').val() != $('#password2_su').val()){
-        $("label[for = passerr]").text("Password doesn\'t match !!!");
-       document.getElementById('matchpass').style.display = 'initial'
-       return false;
-     }else 
-       return true;
-    });
-
-    $('#loginfrm').submit(function() {
-      if($('#login-password').val().length <8){
-        $("label[for = loginerr]").text("The password length must more than 7 !!");
-        document.getElementById('loginerr').style.display = 'initial'
-        return false;
-      }else 
-       return true;
-    });
-</script>
- 
+    
     
   </body>
 </html>

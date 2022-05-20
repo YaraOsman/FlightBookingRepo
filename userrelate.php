@@ -114,12 +114,9 @@ if(isset($_POST['signup'])){
         echo "<script>
         document.getElementById('matchpass').style.display = 'none'
         document.getElementById('signup').style.display = 'none'
-        document.getElementById('login').style.display = 'none'
-        $('#email-addr').text('$email');
+        
         </script>";
 
-    $infos->LoggedInInfo['email'] = $email;
-    $infos->LoggedInInfo['username'] = $username;
 
 }
 
@@ -131,16 +128,21 @@ if(isset($_POST['logingbtn'])){
     oci_execute($users_id);
     while(($row = oci_fetch_array($users_id,OCI_BOTH)) != false){
       if($email == $row[0] && $password == $row[1]){
-          echo "<script>alert('you logged in successfully')</script>";
-          $_SESSION["email"] = $row[0];
-          $_SESSION["username"] = $row[2];
-          
+          $username = $row[2];
+          echo "<script>
+          sessionStorage.setItem('email','$email')
+          sessionStorage.setItem('username','$username')
+          alert('you logged in successfully')
+          location.reload()
+          </script>";
+          header("Refresh:0;");
           return;
       }else{
           echo "
           <script>
           $('label[for = loginerr]').text('Username or Password is incorrect !!!!')
           document.getElementById('loginerr').style.display = 'initial'
+          
           </script>";
           return;
       }
