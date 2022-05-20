@@ -114,6 +114,8 @@ if(isset($_POST['signup'])){
         echo "<script>
         document.getElementById('matchpass').style.display = 'none'
         document.getElementById('signup').style.display = 'none'
+        location.href = '#login'
+        document.getElementById('yousignedup').style.display = 'initial'
         
         </script>";
 
@@ -130,12 +132,15 @@ if(isset($_POST['logingbtn'])){
       if($email == $row[0] && $password == $row[1]){
           $username = $row[2];
           echo "<script>
+          document.getElementById('yousignedup').style.display = 'initial'
           sessionStorage.setItem('email','$email')
           sessionStorage.setItem('username','$username')
-          alert('you logged in successfully')
+          let eml = sessionStorage.getItem('email')
+          window.history.replaceState('','',window.location.href)
           location.reload()
+          alert('you logged in successfully')
           </script>";
-          header("Refresh:0;");
+          
           return;
       }else{
           echo "

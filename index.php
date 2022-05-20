@@ -48,7 +48,6 @@
               <a href="#packages">Packages</a>
             </li>
             <li>
-            
               <a href="#login" id="log-in1">Login</a>
               <a href="#logout" id="logout1">Logout</a>
             </li>
@@ -174,6 +173,7 @@ Lorem, ipsum dolor.
         <h3>Login</h3>
         <img src="images/avatar.jpg" alt="avatar" />
       </header>
+      <label id="yousignedup">You signed up successfully, please login</label>
       <div class="loginform-container">
         <form id="loginfrm" class="login-form" action="" method="POST">
           <label class="login-label" for="email">Email</label>
@@ -186,7 +186,7 @@ Lorem, ipsum dolor.
             <p>Forgot <a href="#">password?</a></p>
           </div>
           <div class="loginform-footer">
-            <p>Don't have an account?<a href="#signup"> Sign up</a></p>
+            <p>Don't have an account?<a href="#signup" id="signup-login"> Sign up</a></p>
           </div>
         </form>
       </div>
@@ -228,7 +228,7 @@ Lorem, ipsum dolor.
           </p>
           <div class="signupform-button">
             <button type="button">Cancel</button>
-            <button type="submit" name="signup">Sign Up</button>
+            <button type="submit" name="signup" >Sign Up</button>
           </div>
         </form>
       </div>

@@ -41,6 +41,12 @@ $("#logout1").click(function(){
     $('#signup').css('display' , 'flex')
     $('#sidenav-login').css('display' , 'none')
 });
+
+$('#signup-login').click(function(){
+  $('#yousignedup').css('display' , 'none')
+  $('#signup').css('display' , 'flex')
+
+})
 });
 
 $('#signupfrm').submit(function() {

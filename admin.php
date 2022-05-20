@@ -49,7 +49,7 @@
           <img src="images/user-icon.png" width="15px" height="auto" alt="" />
         </div>
         <div class="inputcontainer-user">
-          <input type="text" placeholder="Phone" name="phone" required oninput="this.value = this.value.replace(/[^+0-9]/g, '').replace(/^(\+.?)\+/g, '$1').replace(/(\+.*)\+/g, '$1');" />
+          <input type="tel" placeholder="Phone" name="phone" required />
           <img src="images/tel-icon.png" width="12px" height="auto" alt="" />
         </div>
         <div class="inputcontainer-user">
