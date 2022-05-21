@@ -126,13 +126,26 @@ if(isset($_POST['logingbtn'])){
     $email = isset($_POST['login-email'])?$_POST['login-email']:'';
     $password = isset($_POST['login-password'])?$_POST['login-password']:'';
 
-    $users_id=oci_parse($connection,'select email,password,name from users');
+    $users_id=oci_parse($connection,'select usid,email,password,name from users');
     oci_execute($users_id);
-    while(($row = oci_fetch_array($users_id,OCI_BOTH)) != false){
-      if($email == $row[0] && $password == $row[1]){
+    $row;
+    if(($row = oci_fetch_array($users_id,OCI_BOTH)) == null){
+        echo "
+        <script>
+        $('label[for = loginerr]').text('Username or Password is incorrect !!!!')
+        document.getElementById('loginerr').style.display = 'initial'
+        location.href = '#login'
+        </script>";
+        return;
+    }else{
+    do{
+        
+      if($email == $row[1] && $password == $row[2]){
           $username = $row[2];
+          $userid = $row[0];
           echo "<script>
           document.getElementById('yousignedup').style.display = 'initial'
+          sessionStorage.setItem('userid','$userid')
           sessionStorage.setItem('email','$email')
           sessionStorage.setItem('username','$username')
           let eml = sessionStorage.getItem('email')
@@ -147,11 +160,12 @@ if(isset($_POST['logingbtn'])){
           <script>
           $('label[for = loginerr]').text('Username or Password is incorrect !!!!')
           document.getElementById('loginerr').style.display = 'initial'
-          
+          location.href = '#login'
           </script>";
           return;
       }
-    }
+    }while($row = oci_fetch_array($users_id,OCI_BOTH));
+}
 
 }
 

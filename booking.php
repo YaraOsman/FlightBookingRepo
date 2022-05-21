@@ -1,47 +1,62 @@
 <?php
 
 include('conn.php');
-
+echo '-------------------';
 $fromplace=null;
-$from=oci_parse($connection,'select fromplace from airline_available');
+$from=oci_parse($connection,"select distinct fromplace from airline_available");
 oci_execute($from);
-echo "<script> var html=''; ";
-while(($row = oci_fetch_array($from,OCI_BOTH)) != false){
-$fromplace = $row[0];
-
-echo " html += '<option >$fromplace</option>'; ";
-
+$row;
+if(($row = oci_fetch_array($from,OCI_BOTH)) == null){
+ 
 }
+echo "<script> var html=''; ";
+
+do{
+$fromplace = $row[0];
+ echo " html += '<option >$fromplace</option>'; ";
+
+}while(($row = oci_fetch_array($from,OCI_BOTH)));
 echo " $('#fromcountry').append(html); </script>";
 
 
+if(isset($_POST['book'])){
+
+    $phone = isset($_POST['phone'])?(int)$_POST['phone']:'';
+    $packageid = "<script>document.writeln(sessionStorage.getItem('packageid'))</script>";
+    $userid = "<script>document.writeln(sessionStorage.getItem('userid'))</script>";
+    $seatnumber = "<script>document.writeln(sessionStorage.getItem('seatnumber'))</script>";
+    $classtype = null;
+    if($seatnumber >=1 && $seatnumber <=8)
+    $classtype = 'business class';
+    else
+    $classtype = 'economy class';
 
 
-echo "eeeeeeeeeeeeeeee:".$_POST['fromcountry'];
-if($_POST['fromcountry'] == 1){
-    echo "11111111111111111111";
-$sql = "";
-if(isset($_POST['fromcountry'])){
-    $fromcountry = $_POST['fromcountry'];
-    $sql = "select country from airline_available where fromplace like $fromcountry";
-}else{
-    $fromcountry = isset($_POST['fromcountry'])?$_POST['fromcountry']:'';
-    $sql = "select country from airline_available";
+    $date = new DateTime();
+    $dt= $date->format('Y-m-d\TH:m:s');
+    $timestamp = strtotime($dt);	 
+    $ldate = str_replace('T',' ',date("d-m-Y H:i:s", $timestamp));
+    $hdate = "to_date('$ldate','DD-MM-YYYY HH24:MI:SS')";
+    
+    $abid=0;
+    $flight_id=oci_parse($connection,'select max(ABID) from airline_booking');
+    oci_execute($flight_id);
+    while(($row = oci_fetch_array($flight_id,OCI_BOTH)) != false){
+        $abid = (int)$row[0]+1;
+    }
+
+    echo "<br>".$abid."<br>";
+    echo $packageid."<br>";
+    echo $userid."<br>";
+    echo $classtype."<br>";
+    echo $seatnumber."<br>";
+    echo $hdate."<br>";
+    
+
+    $sql = "INSERT INTO airline_booking  (ABID,AAID,USID,classtype,seatnumber,rowdate)VALUES('$abid','$packageid','$userid','$classtype','$seatnumber',$hdate)";
+    $add_flight=oci_parse($connection,$sql);
+    oci_execute($add_flight);
+    oci_error();
+    
 }
-
-$country=null;
-$to=oci_parse($connection,$sql);
-oci_execute($to);
-echo "<script> var html1=''; ";
-while(($row = oci_fetch_array($to,OCI_BOTH)) != false){
-$country = $row[0];
-
-echo " html1 += '<option >$country</option>'; ";
-
-}
-echo " $('#country').append(html1); </script>";
-
-
-}
-
 ?>

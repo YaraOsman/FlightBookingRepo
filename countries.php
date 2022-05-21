@@ -34,10 +34,6 @@
           <select name="fromcountry" id="fromcountry">
             <option value="from" selected disabled hidden>Location</option>
           </select>
-          <label for="to">To</label>
-          <select id="country" name="country">
-            <option value="select" selected disabled hidden>Location</option>
-          </select>
           <label for="departure">Departure</label>
           <input type="date" />
           <label class="r1" for="return">Return</label>
@@ -55,10 +51,12 @@
           <input type="text" />
           <label for="payment">Payment</label>
           <a onclick="openPay()">Pay with</a>
-          <button type="button">Book</button>
+          <button type="submit" name="book" >Book</button>
         </form>
       </div>
     </div>
+
+
 
     <!-- Seat Buttons -->
     <div class="seatButtons-container" id="seatButtons-container">
@@ -97,6 +95,11 @@
       </div>
       <button onclick="closeSeats()" class="book-btn2">Book</button>
     </div>
+
+
+
+
+
 
     <!-- Payment -->
     <div class="pay">

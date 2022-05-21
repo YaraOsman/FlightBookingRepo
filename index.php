@@ -152,8 +152,8 @@ Lorem, ipsum dolor.
           </div>
           <div class="anchor-div">
             <hr />
-            <div class="box-anchor">
-              <a href="countries.php">BOOK NOW</a>
+            <div class="box-anchor" id="cli">
+              <a value="<?php echo $row[0]; ?>" class="booking">BOOK NOW</a>
             </div>
           </div>
         </div>

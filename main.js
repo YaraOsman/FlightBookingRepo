@@ -30,6 +30,22 @@ document.getElementById("mySidenav").style.width = "0";
 }
 /* function to close side navbar when you click link */
 $(document).ready(function(){
+
+  $("#book-now").click(function(){
+    sessionStorage.setItem('packageid',$('#book-now').attr('value'))
+});
+
+$('.booking').click(function(){
+  var user = sessionStorage.getItem('userid')
+  if(user != null){
+    window.open('countries.php','_self')
+  }else{
+    alert('you haven\'t logged in, please login')
+    location.href = '#login'
+  }
+})
+
+
 window.history.replaceState("","",window.location.href)
 
 $(".navlink").click(closeNav);

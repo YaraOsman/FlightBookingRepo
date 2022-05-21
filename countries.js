@@ -3,11 +3,14 @@ $(document).ready(function(){
     $(".cr1").click(function(){
         $(".r1").css("display","flex");
     });
-});
-$(document).ready(function(){
+ 
     $(".cr2").click(function(){
         $(".r1").hide();
     });
+
+  
+
+    
 });
 
 
@@ -244,6 +247,7 @@ function showSeats(){
 }
 /* Close Class container */
 function closeSeats(){
+    sessionStorage.setItem('seatnumber',seatNum)
     countries.style.pointerEvents = "initial"
     countries.style.userSelect = "initial"
     countries.style.filter = "initial"

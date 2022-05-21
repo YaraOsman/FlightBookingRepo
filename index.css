@@ -257,6 +257,7 @@ margin: 6px 9px 0px 3px;
 .anchor-div{
   padding-bottom: 40px;
 }
+
 /* Packages End */
 
 
@@ -560,6 +561,10 @@ margin: 6px 9px 0px 3px;
 #yousignedup{
   color: #04aa6d;
   display: none;
+}
+
+.booking:hover{
+  cursor: pointer;
 }
 
 @media screen and (max-width: 992px) {
