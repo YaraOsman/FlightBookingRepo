@@ -14,12 +14,16 @@
   margin:auto;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   animation: float 5s infinite;
-  width: 1000px
+  width: 2000px
   
 }
 
 .headerdiv{
 margin-bottom: 0px;
+}
+.bodydiv{
+  overflow-y: scroll;
+  width: 2000px;
 }
 
 .maintbldiv{
@@ -74,9 +78,7 @@ margin-bottom: 0px;
   height: 33px;
   width: 237px;
 }
-.bodydiv{
-  overflow-y: scroll;
-}
+
 
 
 
@@ -183,10 +185,13 @@ td {
   max-width: 103px;
 }
 .tdf8{
-  max-width: 160px;
+  max-width: 299px;
 }
 .tdf9{
-  max-width: 299px;
+  max-width: 133px;
+}
+.tdf10{
+  max-width: 133px;
 }
  
 

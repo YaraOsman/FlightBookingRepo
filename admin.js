@@ -21,19 +21,5 @@ function flight(){
     document.getElementById('flighttbl').style.display = 'flex'
 
 }
-//this function will trigger the input element
-function openInput(){
-    document.getElementById('openFile').click()
-}
-//this function triggers when the file submitted to input element, and we will get the file name here
-function onInputChange(){
-    var x = document.getElementById("openFile");
-    var img_name = "";
-    if ('files' in x) {
-        if (x.files.length == 1) { //this means you can't choose multiple images or no iamge
-            img_name =x.files[0].name + "";
-        }
-    } 
-   
-document.getElementById("imglbl").innerHTML = img_name;
-}
+
+

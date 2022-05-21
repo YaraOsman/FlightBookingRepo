@@ -49,7 +49,7 @@
           <img src="images/user-icon.png" width="15px" height="auto" alt="" />
         </div>
         <div class="inputcontainer-user">
-          <input type="tel" placeholder="Phone" name="phone" required />
+          <input type="tel" placeholder="Phone" name="phone" oninput="this.value = this.value.replace(/[^+0-9]/g, '').replace(/^(\+.?)\+/g, '$1').replace(/(\+.*)\+/g, '$1');" required />
           <img src="images/tel-icon.png" width="12px" height="auto" alt="" />
         </div>
         <div class="inputcontainer-user">
@@ -86,7 +86,7 @@
 
        <!-- flight form -->
         <div>
-        <form id="showFlight" class="flight-form" method="POST" name="showFlight">
+        <form id="showFlight" class="flight-form" method="POST" name="showFlight" enctype="multipart/form-data">
           
         <h2>Available Flights</h2>
 
@@ -106,6 +106,11 @@
         </div>
 
         <div class="inputcontainer-flight">
+          <label for="fromplace">From</label>
+          <input type="text" placeholder="From" name="fromplace" />
+        </div>
+
+        <div class="inputcontainer-flight">
           <label for="type">Type</label>
           <select name="type" id="type" required>
             <option value="type" selected disabled hidden>Type</option>
@@ -113,13 +118,15 @@
             <option value="Round Trip">Round Trip</option>
           </select>
         </div>
-          <?php 
-            $date = new DateTime();
-            $dt= $date->format('Y-m-d\TH:m:s');
-           ?>
+          
         <div class="inputcontainer-flight">
-          <label for="date">Date</label>
-          <input step="any" type="datetime-local" name="date" value='<?php echo $dt; ?>'>  
+          <label for="departure">Departure Date</label>
+          <input step="any" type="datetime-local" name="departure">  
+        </div>
+
+        <div class="inputcontainer-flight">
+          <label for="return">Return Date</label>
+          <input step="any" type="datetime-local" name="return">  
         </div>
         
         <div class="inputcontainer-flight">
@@ -141,15 +148,19 @@
           <input type="text" placeholder="Price" name="price" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
         </div>
 
+        <?php 
+            $date = new DateTime();
+            $dt= $date->format('Y-m-d\TH:m:s');
+           ?>
         <div class="inputcontainer-flight">
-          <label for="imgurl">Image URL</label>
-          <div>
+          <label for="date">Date</label>
+          <input step="any" type="datetime-local" name="date" value='<?php echo $dt; ?>'>  
+        </div>
 
-             <button id="imgbtn" type="button" name="img" class="imgbtn" onclick="openInput()" onsubmit="false">choose image</button>
-             <label id="imglbl" for="img" class="imglabel">No file choosen</label>
-             <input style='display: none;' onchange="onInputChange()" id="openFile" type="file" placeholder="image url" name="imgurl" accept="image/x-png,image/gif,image/jpeg,image/jpg"/>
+        <div class="inputcontainer-flight">
+             <label for="img">No file choosen</label>
+             <input name="imgurl" type="file" placeholder="image url" accept="image/x-png,image/gif,image/jpeg,image/jpg"/>
 
-          </div>
         </div>
 
         <div class="btns-flight">
@@ -265,20 +276,23 @@
       <tr>
         <th style="width: 110px;">Flight ID</th>
         <th style="width: 150px;">Country Name</th>
+        <th style="width: 110px;">From</th>
         <th style="width: 95px;">Type</th>
         <th style="width: 90px;">Price</th>
-        <th style="width: 130px;">Inserted Date</th>
+        <th style="width: 130px;">Departure Date</th>
+        <th style="width: 130px;">Return Date</th>
         <th style="width: 100px;">State</th>
-        <th style="width: 100px;">Image Url</th>
         <th style="width: 160px;">Preferred Airline</th>
-        <th style="width: 290px;">Description</th>
+        <th style="width: 120px;">Description</th>
+        <th style="width: 130px;">Inserted Date</th>
+        <th style="width: 100px;">Image Url</th>
       </tr> 
     </table>
   </div>
 
   <div class="bodydiv">
     <table class="table-fill">
-      <tbody style="height:48px; overflow:auto;">
+      <tbody>
 
       <?php include('aarelate.php') ?>
       <?php 
@@ -288,13 +302,17 @@
           <tr onclick='getFlightRowIndex(this)'>
             <td class="text-left tdf1" style="width: 112px;"><?php echo isset($row[0])?$row[0]:'' ?></td>
             <td class="text-left tdf2" style="width: 150px;"><?php echo isset($row[1])?$row[1]:'' ?></td>
-            <td class="text-left tdf3" style="width: 97px;"><?php echo isset($row[3])?$row[3]:'' ?></td>
-            <td class="text-left tdf4" style="width: 92px;"><?php echo isset($row[4])?$row[4]:'' ?></td>
-            <td class="text-left tdf5" style="width: 133px;"><?php echo isset($row[5])?$row[5]:'' ?></td>
-            <td class="text-left tdf6" style="width: 103px;"><?php echo isset($row[6])?$row[6]:'' ?></td>
-            <td class="text-left tdf7" style="width: 103px;"><?php echo isset($row[7])?$row[7]:'' ?></td>
-            <td class="text-left tdf8" style="width: 163px;"><?php echo isset($row[8])?$row[8]:'' ?></td>
-            <td class="text-left tdf9" style="width: 300px;"><?php echo isset($row[2])?$row[2]:'' ?></td>
+            <td class="text-left tdf3" style="width: 97px;"><?php echo isset($row[2])?$row[2]:'' ?></td>
+            <td class="text-left tdf4" style="width: 92px;"><?php echo isset($row[3])?$row[3]:'' ?></td>
+            <td class="text-left tdf5" style="width: 133px;"><?php echo isset($row[4])?$row[4]:'' ?></td>
+            <td class="text-left tdf6" style="width: 133px;"><?php echo isset($row[5])?$row[5]:'' ?></td>
+            <td class="text-left tdf7" style="width: 103px;"><?php echo isset($row[6])?$row[6]:'' ?></td>
+            <td class="text-left tdf8" style="width: 103px;"><?php echo isset($row[7])?$row[7]:'' ?></td>
+            <td class="text-left tdf9" style="width: 163px;"><?php echo isset($row[8])?$row[8]:'' ?></td>
+            <td class="text-left tdf10" style="width: 300px;"><?php echo isset($row[9])?$row[9]:'' ?></td>
+            <td class="text-left tdf11" style="width: 133px;"><?php echo isset($row[10])?$row[10]:'' ?></td>
+            <td class="text-left tdf12" style="width: 97px;"><?php echo isset($row[11])?$row[11]:'' ?></td>
+
           </tr>
       <?php } ?>
   
@@ -326,14 +344,18 @@ function getFlightRowIndex(index){
   var form = document.getElementById("showFlight")
   form.elements[0].value = index.cells[0].innerText
   form.elements[1].value = index.cells[1].innerText
-  form.elements[2].value = index.cells[8].innerText
-  form.elements[3].value = "Round Trip"
-  const dte = (index.cells[4].innerText).replace(' ','T')
-  form.elements[4].value = dte;
-  form.elements[5].value = index.cells[5].innerText
-  form.elements[6].value = index.cells[7].innerText
-  form.elements[7].value = index.cells[3].innerText
-  document.getElementById('imglbl').innerText = index.cells[6].innerText
+  form.elements[2].value = index.cells[9].innerText
+  form.elements[3].value = index.cells[2].innerText
+  form.elements[4].value = index.cells[3].innerText
+  form.elements[5].value = (index.cells[5].innerText).replace(' ','T')
+  form.elements[6].value = (index.cells[6].innerText).replace(' ','T')
+  form.elements[7].value = index.cells[7].innerText
+  form.elements[8].value = index.cells[8].innerText
+  form.elements[9].value = index.cells[4].innerText
+  form.elements[10].value = (index.cells[10].innerText).replace(' ','T')
+
+
+
 
 }
 

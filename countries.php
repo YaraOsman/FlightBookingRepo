@@ -29,21 +29,14 @@
             <label for="radio">One Way Trip</label>
           </div>
         </div>
-        <form class="book-form" action="">
+        <form class="book-form" action="" method="POST">
           <label for="from">From</label>
-          <select name="country">
+          <select name="fromcountry" id="fromcountry">
             <option value="from" selected disabled hidden>Location</option>
-            <option value="Sulaymaniyah">Sulaymaniyah</option>
           </select>
           <label for="to">To</label>
-          <select id="mySelect" name="country">
+          <select id="country" name="country">
             <option value="select" selected disabled hidden>Location</option>
-            <option value="Maldives">Maldives</option>
-            <option value="India">India</option>
-            <option value="Italy">Italy</option>
-            <option value="Japan">Japan</option>
-            <option value="Norway">Norway</option>
-            <option value="Switzerland">Switzerland</option>
           </select>
           <label for="departure">Departure</label>
           <input type="date" />
@@ -165,5 +158,6 @@
 
     <script src="jquery-3.6.0.min.js"></script>
     <script src="countries.js"></script>
+    <?php include('booking.php'); ?>
   </body>
 </html>

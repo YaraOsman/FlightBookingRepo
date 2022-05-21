@@ -1,6 +1,6 @@
 <?php
 $connection=null;
-    $con=oci_connect('flightbooking', 'flightbooking', 'localhost/XE')
+    $con=oci_connect('fb-db', 'fb-db', 'localhost/XE')
                       or die(oci_error());
       if(!$con){
       echo "Sorry, there is some issue";

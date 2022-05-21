@@ -98,7 +98,7 @@
             <a class="navlink" href="#about">About us</a>
           </li>
           <li>
-              <a href="admin.php">user</a>
+              <a href="admin.php">Admin</a>
             </li>
         </ul>
       </div>
@@ -134,13 +134,14 @@ Lorem, ipsum dolor.
         echo "There is no flight yet..";
       }
        while(($row = oci_fetch_array($airline_available,OCI_BOTH)) != false){
+     
          ?>
         <!--First box-->
         <div class="packages-box">
           <div>
             <div class="box-header">
               
-              <img src="images/<?php echo $row[7]; ?>" alt="<?php echo $row[1]; ?>" />
+              <img src="uploadedimages/<?php echo $row[10]; ?>" alt="<?php echo $row[1]; ?>" />
               <p><?php echo $row[1]; ?></p>
             </div>
             <div class="box-text">
@@ -152,7 +153,7 @@ Lorem, ipsum dolor.
           <div class="anchor-div">
             <hr />
             <div class="box-anchor">
-              <a href="countries.html">BOOK NOW</a>
+              <a href="countries.php">BOOK NOW</a>
             </div>
           </div>
         </div>

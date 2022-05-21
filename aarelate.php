@@ -4,31 +4,59 @@ include('conn.php');
 
 $aaid=0;
 $country = isset($_POST['country'])?$_POST['country']:'';
+$fromplace = isset($_POST['fromplace'])?$_POST['fromplace']:'';
 $description = isset($_POST['description'])?$_POST['description']:'';
 $type = isset($_POST['type'])?$_POST['type']:'';
 $price = isset($_POST['price'])?(int)$_POST['price']:'';
 $date = isset($_POST['date'])?$_POST['date']:'';
+$departure = isset($_POST['departure'])?$_POST['departure']:'';
+$return = isset($_POST['return'])?$_POST['return']:'';
 $state = isset($_POST['state'])?$_POST['state']:'';
-$imgurl = isset($_POST['imgurl'])?$_POST['imgurl']:'';
+$imgurl = isset($_FILES['imgurl'])?$_FILES['imgurl']['name']:'';
+$imgurldata = isset($_FILES['imgurl'])?$_FILES['imgurl']['tmp_name']:'';
 $airline = isset($_POST['airline'])?$_POST['airline']:'';
 
+
 if(isset($_POST['flightinsert'])){
+$fileext = explode('.',$imgurl);
+$filecheck = strtolower(end($fileext));
+$fileextstored = array('jpg' , 'jpeg' , 'png');
+
+if(in_array($filecheck,$fileextstored)){//this is checks if the file extention is image or not
 
 $airline_id=oci_parse($connection,'select max(AAID) from airline_available');
 oci_execute($airline_id);
 while(($row = oci_fetch_array($airline_id,OCI_BOTH)) != false){
 $aaid = (int)$row[0]+1;
 }
+
 //this will change the date format to 10-May-2022
 $timestamp = strtotime($date);	 
 $ldate = str_replace('T',' ',date("d-m-Y H:i:s", $timestamp));
 $hdate = "to_date('$ldate','DD-MM-YYYY HH24:MI:SS')";
 
-$sql = "insert into airline_available(AAID,country,description,type,price,AAdate,state,imgurl,preferredAirline)values('$aaid','$country','$description','$type','$price',$hdate,'$state','$imgurl','$airline')";
+$timestamp1 = strtotime($departure);	 
+$ldate1 = str_replace('T',' ',date("d-m-Y H:i:s", $timestamp1));
+$hdate1 = "to_date('$ldate1','DD-MM-YYYY HH24:MI:SS')";
+
+$timestamp2 = strtotime($return);	 
+$ldate2 = str_replace('T',' ',date("d-m-Y H:i:s", $timestamp2));
+$hdate2 = "to_date('$ldate2','DD-MM-YYYY HH24:MI:SS')";
+
+$sql = "INSERT INTO airline_available (AAID,country,type,price,departure,return,state,imgurl,preferredAirline,description,rowdate,fromplace)VALUES('$aaid','$country','$type','$price',$hdate1,$hdate2,'$state','$imgurl','$airline','$description',$hdate,'$fromplace')";
 $add_airline=oci_parse($connection,$sql);
 oci_execute($add_airline);
 
+
+$destinationfile = "uploadedimages/".$imgurl;
+move_uploaded_file($imgurldata,$destinationfile);
+
+echo "<script>window.history.replaceState('','',window.location.href)</script>";
+
 flight();
+}else{
+    echo "<script>alert('the file is not image')</script>";
+}
 
 }else if(isset($_POST['flightupdate'])){
     if(isset($_POST['flightid'])){
@@ -53,7 +81,7 @@ flight();
 
 
 $get_airlines;
-$sqlf = "select AAID,country,description,type,price,to_char(AADate,'YYYY-MM-DD HH24:MI:SS'),state,imgurl,preferredAirline from airline_available order by AAID desc";
+$sqlf = "select AAID,country,fromplace,type,price,to_char(departure,'YYYY-MM-DD HH24:MI:SS'),to_char(return,'YYYY-MM-DD HH24:MI:SS'),state,preferredAirline,description,to_char(rowdate,'YYYY-MM-DD HH24:MI:SS') from airline_available order by AAID desc";
 if(isset($_POST['flightsearch'])){
     global $connection;
     global $get_airlines;
@@ -78,18 +106,17 @@ if(isset($_POST['flightsearch'])){
     $get_airlines = oci_parse($connection,$sqlf);
     oci_execute($get_airlines);
 
- flight();
+    flight();
 
 }
 
 if(isset($_POST['showallflight'])){
-    $sqlf = "select AAID,country,description,type,price,to_char(AADate,'YYYY-MM-DD HH24:MI:SS'),state,imgurl,preferredAirline from airline_available order by AAID desc";
+    $sqlf = "select AAID,country,fromplace,type,price,to_char(departure,'YYYY-MM-DD HH24:MI:SS'),to_char(return,'YYYY-MM-DD HH24:MI:SS'),state,preferredAirline,description,to_char(rowdate,'YYYY-MM-DD HH24:MI:SS') from airline_available order by AAID desc";
     flight();
 }
 
 $get_airlines = oci_parse($connection,$sqlf);
 oci_execute($get_airlines);
-
 
 
 
@@ -118,7 +145,7 @@ function deleteflight(){
 }
 
 function updateflight(){
-        global $connection,$country,$description,$type,$price,$date,$state,$imgurl,$airline;
+        global $connection,$country,$description,$type,$price,$date,$state,$imgurl,$airline,$fromplace;
     
         $timestamp = strtotime($date);	 
         $ldate = str_replace('T',' ',date("d-m-Y H:i:s", $timestamp));
@@ -126,7 +153,7 @@ function updateflight(){
     
     
         $aaid = (int)$_POST['flightid'];
-        $sql = "update airline_available set country='$country',description='$description',type='$type',price=$price,aadate=$hdate,state='$state',imgurl='$imgurl',preferredAirline='$airline' where aaid = $aaid";
+        $sql = "update airline_available set country='$country',description='$description',type='$type',price=$price,aadate=$hdate,state='$state',imgurl='$imgurl',preferredAirline='$airline',fromplace='$fromplace' where aaid = $aaid";
         $update_flight = oci_parse($connection,$sql);
         oci_execute($update_flight);
     
