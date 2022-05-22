@@ -158,7 +158,6 @@ seat.forEach(element => {
                         element.isCheckt = false
                         btn1.classList.remove('display-btn1')
                         seatNum=null
-                        document.getElementById("select-class").innerHTML = "Select a Class"  
 
                     }
                 }
@@ -168,7 +167,6 @@ seat.forEach(element => {
                 element.isCheckt = true
                 seatNum = element.id
                 btn1.classList.add('display-btn1')
-                document.getElementById("select-class").innerHTML = "Class B is Selected"  
 
                 }
             }
@@ -204,7 +202,6 @@ seat.forEach(element => {
                             element.isCheckt = false
                             btn2.classList.remove('display-btn2')
                             seatNum=null
-                            document.getElementById("select-class").innerHTML = "Select a Class"  
 
                         }
                     }
@@ -214,7 +211,6 @@ seat.forEach(element => {
                     element.isCheckt = true
                     seatNum=element.id
                     btn2.classList.add('display-btn2')
-                    document.getElementById("select-class").innerHTML = "Class E is Selected"  
                     }
                 }
             }

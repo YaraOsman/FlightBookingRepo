@@ -1,7 +1,8 @@
 <?php
+echo "yyyyyy";
 
 include('conn.php');
-echo '-------------------';
+
 $fromplace=null;
 $from=oci_parse($connection,"select distinct fromplace from airline_available");
 oci_execute($from);
@@ -20,11 +21,16 @@ echo " $('#fromcountry').append(html); </script>";
 
 
 if(isset($_POST['book'])){
+   
+  
+// am package id m haya amawe bikama naw variableky php , farmw
+    $packageid = "<script> sessionStorage.getItem('packageid')</script>";
+    $userid = "<script> sessionStorage.getItem('userid')</script>";
+    $seatnumber = "<script> sessionStorage.getItem('seatnumber') </script>";
+   
 
-    $phone = isset($_POST['phone'])?(int)$_POST['phone']:'';
-    $packageid = "<script>document.writeln(sessionStorage.getItem('packageid'))</script>";
-    $userid = "<script>document.writeln(sessionStorage.getItem('userid'))</script>";
-    $seatnumber = "<script>document.writeln(sessionStorage.getItem('seatnumber'))</script>";
+
+
     $classtype = null;
     if($seatnumber >=1 && $seatnumber <=8)
     $classtype = 'business class';
@@ -45,18 +51,22 @@ if(isset($_POST['book'])){
         $abid = (int)$row[0]+1;
     }
 
-    echo "<br>".$abid."<br>";
-    echo $packageid."<br>";
-    echo $userid."<br>";
-    echo $classtype."<br>";
-    echo $seatnumber."<br>";
-    echo $hdate."<br>";
-    
+    // echo "<br>".$abid."<br>";
+    // echo $packageid."<br>";
+    // echo $userid."<br>";
+    // echo $classtype."<br>";
+    // echo $seatnumber."<br>";
+    // echo $hdate."<br>";
+   
+  
 
-    $sql = "INSERT INTO airline_booking  (ABID,AAID,USID,classtype,seatnumber,rowdate)VALUES('$abid','$packageid','$userid','$classtype','$seatnumber',$hdate)";
-    $add_flight=oci_parse($connection,$sql);
-    oci_execute($add_flight);
-    oci_error();
-    
+
+    // $sql = "INSERT INTO airline_booking(ABID,AAID,USID,classtype,seatnumber,rowdate) VALUES('$abid','$packageid','$userid','$classtype',$seatnumber,$hdate)";
+
+    // $add_flight=oci_parse($connection,$sql);
+    // oci_execute($add_flight);
+   
 }
+
+
 ?>

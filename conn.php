@@ -1,4 +1,6 @@
+
 <?php
+   
 $connection=null;
     $con=oci_connect('fb-db', 'fb-db', 'localhost/XE')
                       or die(oci_error());
@@ -15,3 +17,4 @@ $connection=null;
   
 //final
 ?>
+if (session_status() == PHP_SESSION_NONE) {

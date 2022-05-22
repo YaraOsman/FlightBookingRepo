@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php session_start(); ?>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -52,6 +52,7 @@
           <label for="payment">Payment</label>
           <a onclick="openPay()">Pay with</a>
           <button type="submit" name="book" >Book</button>
+          <input id="test" name="test" />
         </form>
       </div>
     </div>

@@ -1,3 +1,5 @@
+
+
 const emailStored = sessionStorage.getItem('email')
 
 if(emailStored != null){
@@ -31,9 +33,7 @@ document.getElementById("mySidenav").style.width = "0";
 /* function to close side navbar when you click link */
 $(document).ready(function(){
 
-  $("#book-now").click(function(){
-    sessionStorage.setItem('packageid',$('#book-now').attr('value'))
-});
+
 
 $('.booking').click(function(){
   var user = sessionStorage.getItem('userid')
@@ -43,6 +43,14 @@ $('.booking').click(function(){
     alert('you haven\'t logged in, please login')
     location.href = '#login'
   }
+  var packageid = $('.booking').attr('value')
+    sessionStorage.setItem('packageid',packageid)
+    
+                $.post('test.php',{data: packageid},
+                function(data)
+                    {
+                        alert("success:")
+                    });
 })
 
 
