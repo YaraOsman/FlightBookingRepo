@@ -1,5 +1,4 @@
 
-
 const emailStored = sessionStorage.getItem('email')
 
 if(emailStored != null){
@@ -34,23 +33,36 @@ document.getElementById("mySidenav").style.width = "0";
 $(document).ready(function(){
 
 
-
 $('.booking').click(function(){
+console.log('1111111111111')
+
   var user = sessionStorage.getItem('userid')
   if(user != null){
-    window.open('countries.php','_self')
+    var packageid = $(this).attr("value")
+    sessionStorage.setItem('packageid',packageid)
+
+console.log('2222222222222')
+    $.ajax({
+      url: 'checkifbooked.php',
+      method: 'POST',
+      data: {pid:packageid,uid:user},
+      success: function(res){
+        console.log(res)
+        if(res){
+          alert('you already booked this flight if you want to cancel it, fill you card information and passport number then hit cancel button')
+        }
+        
+          
+      }
+  })
+    
+    location.href = "countries.php"
+
   }else{
     alert('you haven\'t logged in, please login')
     location.href = '#login'
   }
-  var packageid = $('.booking').attr('value')
-    sessionStorage.setItem('packageid',packageid)
-    
-                $.post('test.php',{data: packageid},
-                function(data)
-                    {
-                        alert("success:")
-                    });
+ 
 })
 
 
@@ -95,4 +107,4 @@ $('#signupfrm').submit(function() {
      return true;
   });
 
-
+ 

@@ -1,16 +1,44 @@
+
 /* radio button functions */
 $(document).ready(function(){
-    $(".cr1").click(function(){
-        $(".r1").css("display","flex");
-    });
- 
-    $(".cr2").click(function(){
-        $(".r1").hide();
-    });
-
-  
+   
+    
+    var pid = $('#pid').val(sessionStorage.getItem('packageid'))
+    var uid = sessionStorage.getItem('userid')
+    $('#uid').val(uid)
+    $('#payput').val(uid)
 
     
+    sessionStorage.removeItem('seatnumber')
+    
+    $.ajax({
+        url: 'test.php',
+        method: 'POST',
+        data: pid,
+        success: function(res){
+            var json_data = JSON.parse(res)
+
+            $('#fromcountry').val(json_data.from)
+            $('#departure').val(json_data.departure.replace(' ','T'))
+            $('#airline').val(json_data.airline)
+            $('#price').val(json_data.price)
+
+            if(json_data.type == "Round Trip"){
+            $('#return').val(json_data.return.replace(' ','T'))
+            $(".r1").css("display","flex");
+            $(".r1").css("display","flex");
+            $(".cr1").attr('checked', 'checked');
+            }else{
+            $(".r1").hide();
+            $(".cr2").attr('checked', 'checked');
+
+            }
+
+            
+        }
+    })
+
+
 });
 
 
@@ -243,7 +271,9 @@ function showSeats(){
 }
 /* Close Class container */
 function closeSeats(){
+    
     sessionStorage.setItem('seatnumber',seatNum)
+    $('#snumber').val(sessionStorage.getItem('seatnumber'))
     countries.style.pointerEvents = "initial"
     countries.style.userSelect = "initial"
     countries.style.filter = "initial"

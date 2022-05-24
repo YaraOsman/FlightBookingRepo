@@ -126,21 +126,19 @@ Lorem, ipsum dolor.
       <!-- the php connection with oracle -->
       <?php require("conn.php");
        
-        $airline_available=oci_parse($connection,'select * from airline_available');
+        $airline_available=oci_parse($connection,'select * from airline_available where (months_between(departure , sysdate)*30)>2');
         oci_execute($airline_available);
-       ?>
-      <?php 
-      if(oci_fetch_array($airline_available,OCI_BOTH) == false){
+      
+      $row;
+      if(($row = oci_fetch_array($airline_available,OCI_BOTH)) == false){
         echo "There is no flight yet..";
       }
-       while(($row = oci_fetch_array($airline_available,OCI_BOTH)) != false){
-     
+       do{
+   
          ?>
-        <!--First box-->
         <div class="packages-box">
           <div>
             <div class="box-header">
-              
               <img src="uploadedimages/<?php echo $row[10]; ?>" alt="<?php echo $row[1]; ?>" />
               <p><?php echo $row[1]; ?></p>
             </div>
@@ -153,13 +151,13 @@ Lorem, ipsum dolor.
           <div class="anchor-div">
             <hr />
             <div class="box-anchor" id="cli">
-              <a value="<?php echo $row[0]; ?>" class="booking">BOOK NOW</a>
+              <a value="<?php echo $row[0]; ?>" class="booking" >BOOK NOW</a>
             </div>
           </div>
         </div>
         
         <?php 
-       }
+       }while(($row = oci_fetch_array($airline_available,OCI_BOTH)))
         ?>
         
         
@@ -289,6 +287,7 @@ Lorem, ipsum dolor.
 
     <script src="jquery-3.6.0.min.js"></script>
     <script src="main.js"></script>
+
     <?php require('userrelate.php'); ?>
     
     

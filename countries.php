@@ -19,43 +19,46 @@
     <div id="countries">
       <div class="countries-container">
         <header class="countries-header"><h1>Book Flight Tickets</h1></header>
-        <div class="countries-radio">
+        <div class="countries-radio" >
           <div class="countriesradio-1">
-            <input class="cr1" type="radio" name="Flight" checked />
+            <input class="cr1" type="radio" name="Flight" checked onclick="return false;"/>
             <label for="radio">Round Trip</label>
           </div>
           <div class="countriesradio-2">
-            <input class="cr2" type="radio" name="Flight" />
+            <input class="cr2" type="radio" name="Flight" onclick="return false;"/>
             <label for="radio">One Way Trip</label>
           </div>
         </div>
-        <form class="book-form" action="" method="POST">
-          <label for="from">From</label>
+        <form id="countyfrm" class="book-form" action="" method="POST">
+          <label for="from" id="tstid">From</label>
           <select name="fromcountry" id="fromcountry">
             <option value="from" selected disabled hidden>Location</option>
           </select>
-          <label for="departure">Departure</label>
-          <input type="date" />
+          <label for="departure" >Departure</label>
+          <input type="datetime-local" id="departure" />
           <label class="r1" for="return">Return</label>
-          <input class="r1" type="date" />
+          <input class="r1" type="datetime-local" id="return"/>
           <label for="class">Class</label>
           <a onclick="showSeats()">Select a Class</a>
           <label for="airline">Preffered Airline</label>
-          <select name="airline">
+          <select name="airline" id="airline">
             <option selected disabled hidden>Choose an airline</option>
-            <option value="Qatar">Qatar Airways</option>
-            <option value="Turkey">Turkish Airlines</option>
-            <option value="iraq">Iraqi Airways</option>
           </select>
           <label for="price">Price</label>
-          <input type="text" />
+          <input type="text" name='price' id="price"/>
           <label for="payment">Payment</label>
           <a onclick="openPay()">Pay with</a>
+          <label for="passport">Passport Number</label>
+          <input type="text" name='passport' id="passpord"/>
           <button type="submit" name="book" >Book</button>
-          <input id="test" name="test" />
+          <input id="pid" name="pid" hidden />
+          <input id="uid" name="uid" hidden />
+          <input id="snumber" name="snumber" hidden />
         </form>
       </div>
     </div>
+
+      
 
 
 
@@ -112,48 +115,29 @@
             <h2>Payment</h2>
           </header>
           <div class="paymentform-container">
-            <form class="payment-form" action="">
+            <form class="payment-form" action="" method="POST">
               <label class="payment-label" for="name">CARDHOLDER'S NAME</label>
-              <input
-                class="payment-input"
-                type="text"
-                placeholder="Name on card"
-              />
+              <input class="payment-input" name="card-name" type="text" placeholder="Name on card" required/>
               <label class="payment-label" for="cardnumber">CARD NUMBER</label>
               <div class="cardnumber-input">
-                <input
-                  class="payment-input"
-                  type="tel"
-                  inputmode="numeric"
-                  pattern="[0-9\s]{13,19}"
-                  autocomplete="cc-number"
-                  maxlength="19"
-                  placeholder="---- ---- ---- ----"
-                />
+                <input class="payment-input" name="card-number" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}"
+                autocomplete="cc-number" maxlength="19" placeholder="---- ---- ---- ----" required />
                 <img src="images/credit icon.png" alt="" />
               </div>
               <div class="datecvv-container">
                 <div class="date-container">
                   <label class="payment-label" for="date">EXPIRY DATE</label>
-                  <input
-                    class="payment-input2"
-                    type="tel"
-                    placeholder="Mm/yyyy"
-                  />
+                  <input class="payment-input2" type="tel" placeholder="Mm/yyyy" name="card-exp" required/>
                 </div>
                 <div class="cvv-container">
-                  <label class="payment-label" for="cvv">CVV</label>
-                  <input
-                    class="payment-input2"
-                    type="tel"
-                    maxlength="4"
-                    pattern="([0-9]|[0-9]|[0-9])"
-                    name="cvv"
-                    placeholder="Code"
-                  />
+                  <label class="payment-label" for="cvc">CVC/CVV</label>
+                  <input class="payment-input2" type="tel" maxlength="3"
+                   name="cvc" placeholder="Code" required />
                 </div>
               </div>
-              <button class="payment-button">Pay Now</button>
+              <button class="payment-button" name="paynow">Pay Now</button>
+              <input id="payput" name="puid" />
+
             </form>
           </div>
         </div>
@@ -161,7 +145,10 @@
     </div>
 
     <script src="jquery-3.6.0.min.js"></script>
-    <script src="countries.js"></script>
+   
     <?php include('booking.php'); ?>
+    <script src="./countries.js"></script>
+
+
   </body>
 </html>
