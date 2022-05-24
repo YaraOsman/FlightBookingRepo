@@ -34,29 +34,49 @@ $(document).ready(function(){
 
 
 $('.booking').click(function(){
-console.log('1111111111111')
-
+  
   var user = sessionStorage.getItem('userid')
   if(user != null){
     var packageid = $(this).attr("value")
     sessionStorage.setItem('packageid',packageid)
 
-console.log('2222222222222')
+    
     $.ajax({
       url: 'checkifbooked.php',
       method: 'POST',
       data: {pid:packageid,uid:user},
       success: function(res){
         console.log(res)
-        if(res){
-          alert('you already booked this flight if you want to cancel it, fill you card information and passport number then hit cancel button')
+      //  console.log("//"+res+"/")
+        if(res != null){
+         var cancel1 = confirm('you already booked this flight if you want to cancel it, fill you card information and passport number then hit confirm button')
+
+         if(cancel1){//this means the user already booked this flight
+console.log('cancel1:'+cancel1)
+
+         var cancel2 = confirm('you are about to cancel your flight please reassure that you want to cancel it!!')
+         if(cancel2 ==1 ){//reconfirm cancelling the flight
+console.log('cancel2:'+cancel2)
+          $.ajax({
+            url: 'flightcancelling.php',
+            method: 'POST',
+            data: {dt: res},
+            success: function(res2){
+            console.log("second AJAX:"+res2)
+            }
+          })
+
+         }
+        }
+        }else{
+          location.href = "countries.php"
+
         }
         
           
       }
   })
     
-    location.href = "countries.php"
 
   }else{
     alert('you haven\'t logged in, please login')

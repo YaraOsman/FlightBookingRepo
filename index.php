@@ -165,7 +165,6 @@ Lorem, ipsum dolor.
     </div>
 
 
-
     <!--Login-->
     <div id="login">
       <header class="login-header">
@@ -282,12 +281,9 @@ Lorem, ipsum dolor.
       </div>
     </footer>
    
-    
-   
 
     <script src="jquery-3.6.0.min.js"></script>
     <script src="main.js"></script>
-
     <?php require('userrelate.php'); ?>
     
     

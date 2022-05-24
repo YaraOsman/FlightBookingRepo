@@ -95,7 +95,6 @@ if(isset($_POST['signup'])){
     $phone = isset($_POST['phone_su'])?(int)$_POST['phone_su']:'';
     $role = 'user';
     $dt = new DateTime();
-
     $date= $dt->format('Y-m-d\TH:i:s');
     $timestamp = strtotime($date);	 
     $ldate = str_replace('T',' ',date("d-m-Y H:i:s", $timestamp));
