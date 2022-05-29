@@ -133,13 +133,13 @@ Lorem, ipsum dolor.
       if(($row = oci_fetch_array($airline_available,OCI_BOTH)) == false){
         echo "There is no flight yet..";
       }
-       do{
+      while(($row = oci_fetch_array($airline_available,OCI_BOTH))){
    
          ?>
         <div class="packages-box">
           <div>
             <div class="box-header">
-              <img src="uploadedimages/<?php echo $row[10]; ?>" alt="<?php echo $row[1]; ?>" />
+              <img src="uploadedimages/<?php echo $row[10]; ?>" />
               <p><?php echo $row[1]; ?></p>
             </div>
             <div class="box-text">
@@ -157,7 +157,7 @@ Lorem, ipsum dolor.
         </div>
         
         <?php 
-       }while(($row = oci_fetch_array($airline_available,OCI_BOTH)))
+       }
         ?>
         
         
