@@ -329,19 +329,11 @@ Lorem, ipsum dolor.
           <div class="feedbackform-container">
             <form class="feedback-form" action="">
               <label class="feedbackform-label" for="username">Username</label>
-              <input
-                class="feedbackform-input"
-                type="text"
-                placeholder="Username"
-                required
-              />
+              <input class="feedbackform-input" type="text" placeholder="Username" required />
               <label class="feedbackform-label" for="password">Password</label>
               <input
                 class="feedbackform-input"
-                type="pass"
-                placeholder="Password"
-                required
-              />
+                type="pass"placeholder="Password"required />
               <label class="textarea-label" for="textarea"
                 >Enter your opinion here:
               </label>
