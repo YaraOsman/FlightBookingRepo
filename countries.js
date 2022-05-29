@@ -274,6 +274,7 @@ function closeSeats(){
     
     sessionStorage.setItem('seatnumber',seatNum)
     $('#snumber').val(sessionStorage.getItem('seatnumber'))
+   
     countries.style.pointerEvents = "initial"
     countries.style.userSelect = "initial"
     countries.style.filter = "initial"
@@ -290,6 +291,8 @@ function openPay() {
     document.getElementById("countries").style.pointerEvents = "none";
     document.getElementById("countries").style.userSelect = "none";
     document.getElementById("countries").style.filter = "blur(1px)";
+
+    
 }
 /* Close Payment */
 function closePay() {

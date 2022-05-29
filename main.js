@@ -46,9 +46,9 @@ $('.booking').click(function(){
       method: 'POST',
       data: {pid:packageid,uid:user},
       success: function(res){
-        console.log(res)
-      //  console.log("//"+res+"/")
-        if(res != null){
+       console.log("//"+res.includes('none')+"//")
+       console.log('packageid:'+packageid)
+        if(!res.includes('none')){
          var cancel1 = confirm('you already booked this flight if you want to cancel it, fill you card information and passport number then hit confirm button')
 
          if(cancel1){//this means the user already booked this flight

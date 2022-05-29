@@ -115,24 +115,46 @@ if(isset($_POST['book'])){
         $abid = (int)$row[0]+1;
     }
   
+    echo $seatnumber;
+
     if($seatnumber == null){
         $seatnumber = 0;
     }
     $passport_number = $_POST['passport'];
-    $sql = "update users set passportno = $passport_number where usid = $userid";
+    $sql = "update users set passportno = '$passport_number' where usid = '$userid'";
     $add_passport=oci_parse($connection,$sql);
     oci_execute($add_passport);
 
+$abid_check = null;
+
+$check_booked=oci_parse($connection,"select abid from airline_booking where aaid = $packageid and usid = $userid");
+oci_execute($check_booked);
+$row;
+while(($row = oci_fetch_array($check_booked,OCI_BOTH)) != false){
+$abid_check = $row[0];
+}
+    echo $seatnumber;
+
+if($abid_check != null){
+    $sql = "UPDATE airline_booking set classtype='$classtype',seatnumber=$seatnumber,rowdate=$hdate where abid = $abid_check";
+    echo "<script>console.log('qqqqqqqqqqqqqqq');</script>";
+
+}else{
 
     $sql = "INSERT INTO airline_booking(ABID,AAID,USID,classtype,seatnumber,rowdate) VALUES('$abid','$packageid','$userid','$classtype',$seatnumber,$hdate)";
+    echo "<script>console.log('wwwwwwwwwwwwwwwww');</script>";
+
+}
+
 
     $add_flight=oci_parse($connection,$sql);
     oci_execute($add_flight);
+
      echo "<script>alert('you booked the flight successfuly, if you ever mind to cancel it you have to do it in 2 days befor flight starts');
-    location.href = '#index.php'
+   
      
      </script>";
-
+// location.href = 'index.php'
 
 }else{
     echo "<script>alert('please add your payment');</script>";

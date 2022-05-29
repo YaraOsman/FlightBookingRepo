@@ -98,11 +98,11 @@ if(isset($_POST['flightsearch'])){
     if($date != ""){
         $timestamp = strtotime($date);	 
         $ldate = date("d-m-Y", $timestamp);
-        $hdate = "and trunc(AAdate) like to_date('$ldate','DD-MM-YYYY')";
+        $hdate = "and trunc(departure) like to_date('$ldate','DD-MM-YYYY')";
       
     }
 
-    $sqlf = "select AAID,country,description,type,price,to_char(AADate,'YYYY-MM-DD HH24:MI:SS'),state,imgurl,preferredAirline from airline_available where country like '%$country%' and type like '%$type%' and state like '%$state%' and preferredAirline like '%$airline%' and price like '%$price%' $hdate order by AAID desc";
+    $sqlf = "select AAID,country,fromplace,type,price,to_char(departure,'YYYY-MM-DD HH24:MI:SS'),to_char(return,'YYYY-MM-DD HH24:MI:SS'),state,preferredAirline,description,to_char(rowdate,'YYYY-MM-DD HH24:MI:SS') from airline_available where country like '%$country%' and type like '%$type%' and state like '%$state%' and preferredAirline like '%$airline%' and price like '%$price%' $hdate order by AAID desc";
     $get_airlines = oci_parse($connection,$sqlf);
     oci_execute($get_airlines);
 
@@ -145,15 +145,25 @@ function deleteflight(){
 }
 
 function updateflight(){
-        global $connection,$country,$description,$type,$price,$date,$state,$imgurl,$airline,$fromplace;
+        global $connection,$country,$description,$type,$price,$date,$state,$imgurl,$airline,$fromplace,$departure,$return;
     
         $timestamp = strtotime($date);	 
         $ldate = str_replace('T',' ',date("d-m-Y H:i:s", $timestamp));
         $hdate = "to_date('$ldate','DD-MM-YYYY HH24:MI:SS')";
-    
+     
+        
+        $timestamp = strtotime($departure);	 
+        $ldate = str_replace('T',' ',date("d-m-Y H:i:s", $timestamp));
+        $depdate = "to_date('$ldate','DD-MM-YYYY HH24:MI:SS')";
+
+        
+        $timestamp = strtotime($return);	 
+        $ldate = str_replace('T',' ',date("d-m-Y H:i:s", $timestamp));
+        $redate = "to_date('$ldate','DD-MM-YYYY HH24:MI:SS')";
+
     
         $aaid = (int)$_POST['flightid'];
-        $sql = "update airline_available set country='$country',description='$description',type='$type',price=$price,aadate=$hdate,state='$state',imgurl='$imgurl',preferredAirline='$airline',fromplace='$fromplace' where aaid = $aaid";
+        $sql = "update airline_available set country='$country',description='$description',type='$type',price=$price,rowdate=$hdate,departure = $depdate, return=$redate, state='$state',imgurl='$imgurl',preferredAirline='$airline',fromplace='$fromplace' where aaid = $aaid";
         $update_flight = oci_parse($connection,$sql);
         oci_execute($update_flight);
     

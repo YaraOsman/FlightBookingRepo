@@ -1,4 +1,3 @@
-
 <?php
    
 $connection=null;
@@ -17,4 +16,3 @@ $connection=null;
   
 //final
 ?>
-if (session_status() == PHP_SESSION_NONE) {

@@ -203,12 +203,12 @@
 <div class="maintbldiv">
  
     <div class="headerdiv">
-      <table class="table-fill">
+      <table class="table-fill" style=" width: 1200px;">
         
           <tr >
             <th style="width: 96px; padding: 6px 0px;">User ID</th>
-            <th style="width: 125px; padding: 6px 0px;">User Name</th>
-            <th style="width: 220px; padding: 6px 0px;">Email</th>
+            <th style="width: 140px; padding: 6px 0px;">User Name</th>
+            <th style="width: 200px; padding: 6px 0px;">Email</th>
             <th style="width: 97px; padding: 6px 0px;" >Phone No</th>
             <th style="width: 98px; padding: 6px 0px;">Password</th>
             <th style="width: 90px; padding: 6px 0px;">Role</th>
@@ -216,8 +216,8 @@
           </tr> 
       </table>
     </div>
-    <div class="bodydiv">
-      <table class="table-fill">
+    <div class="bodydiv" style=" width: 1200px;">
+      <table class="table-fill" style=" width: 1200px;">
         <tbody>
           
        <?php include('userrelate.php');  ?>
@@ -274,15 +274,15 @@
   <div class="headerdiv">
     <table class="table-fill">
       <tr>
-        <th style="width: 110px;">Flight ID</th>
-        <th style="width: 150px;">Country Name</th>
+        <th style="width: 100px;">Flight ID</th>
+        <th style="width: 130px;">Country Name</th>
         <th style="width: 110px;">From</th>
         <th style="width: 95px;">Type</th>
         <th style="width: 90px;">Price</th>
         <th style="width: 130px;">Departure Date</th>
         <th style="width: 130px;">Return Date</th>
-        <th style="width: 100px;">State</th>
-        <th style="width: 160px;">Preferred Airline</th>
+        <th style="width: 90px;">State</th>
+        <th style="width: 120px;">Preferred Airline</th>
         <th style="width: 120px;">Description</th>
         <th style="width: 130px;">Inserted Date</th>
         <th style="width: 100px;">Image Url</th>
@@ -300,18 +300,18 @@
          ?>
 
           <tr onclick='getFlightRowIndex(this)'>
-            <td class="text-left tdf1" style="width: 112px;"><?php echo isset($row[0])?$row[0]:'' ?></td>
-            <td class="text-left tdf2" style="width: 150px;"><?php echo isset($row[1])?$row[1]:'' ?></td>
-            <td class="text-left tdf3" style="width: 97px;"><?php echo isset($row[2])?$row[2]:'' ?></td>
-            <td class="text-left tdf4" style="width: 92px;"><?php echo isset($row[3])?$row[3]:'' ?></td>
-            <td class="text-left tdf5" style="width: 133px;"><?php echo isset($row[4])?$row[4]:'' ?></td>
-            <td class="text-left tdf6" style="width: 133px;"><?php echo isset($row[5])?$row[5]:'' ?></td>
-            <td class="text-left tdf7" style="width: 103px;"><?php echo isset($row[6])?$row[6]:'' ?></td>
-            <td class="text-left tdf8" style="width: 103px;"><?php echo isset($row[7])?$row[7]:'' ?></td>
-            <td class="text-left tdf9" style="width: 163px;"><?php echo isset($row[8])?$row[8]:'' ?></td>
-            <td class="text-left tdf10" style="width: 300px;"><?php echo isset($row[9])?$row[9]:'' ?></td>
-            <td class="text-left tdf11" style="width: 133px;"><?php echo isset($row[10])?$row[10]:'' ?></td>
-            <td class="text-left tdf12" style="width: 97px;"><?php echo isset($row[11])?$row[11]:'' ?></td>
+            <td class="text-left tdf1" style="width: 100px;"><?php echo isset($row[0])?$row[0]:'' ?></td>
+            <td class="text-left tdf2" style="width: 130px;"><?php echo isset($row[1])?$row[1]:'' ?></td>
+            <td class="text-left tdf3" style="width: 110px;"><?php echo isset($row[2])?$row[2]:'' ?></td>
+            <td class="text-left tdf4" style="width: 95px;"><?php echo isset($row[3])?$row[3]:'' ?></td>
+            <td class="text-left tdf5" style="width: 90px;"><?php echo isset($row[4])?$row[4]:'' ?></td>
+            <td class="text-left tdf6" style="width: 130px;"><?php echo isset($row[5])?$row[5]:'' ?></td>
+            <td class="text-left tdf7" style="width: 130px;"><?php echo isset($row[6])?$row[6]:'' ?></td>
+            <td class="text-left tdf8" style="width: 90px;"><?php echo isset($row[7])?$row[7]:'' ?></td>
+            <td class="text-left tdf9" style="width: 120px;"><?php echo isset($row[8])?$row[8]:'' ?></td>
+            <td class="text-left tdf10" style="width: 120px;"><?php echo isset($row[9])?$row[9]:'' ?></td>
+            <td class="text-left tdf11" style="width: 130px;"><?php echo isset($row[10])?$row[10]:'' ?></td>
+            <td class="text-left tdf12" style="width: 100px;"><?php echo isset($row[11])?$row[11]:'' ?></td>
 
           </tr>
       <?php } ?>

@@ -22,9 +22,10 @@
 margin-bottom: 0px;
 }
 .bodydiv{
-  overflow-y: scroll;
   width: 2000px;
 }
+
+
 
 .maintbldiv{
   margin: auto;
@@ -36,6 +37,7 @@ margin-bottom: 0px;
   overflow-x: auto;
   width: 900px;
   margin-bottom: 50px;
+  
 }
 .search-container{
   display: flex;
@@ -164,34 +166,40 @@ td {
   white-space: nowrap;
 }
 .tdf1{
-  max-width: 112px;
+  max-width: 100px;
 }
 .tdf2{
-  max-width: 153px;
+  max-width: 130px;
 }
 .tdf3{
-  max-width: 97px;
+  max-width: 110px;
 }
 .tdf4{
   max-width: 95px;
 }
 .tdf5{
-  max-width: 133px;
+  max-width: 90px;
 }
 .tdf6{
-  max-width: 103px;
+  max-width: 130px;
 }
 .tdf7{
-  max-width: 103px;
+  max-width: 130px;
 }
 .tdf8{
-  max-width: 299px;
+  max-width: 90px;
 }
 .tdf9{
-  max-width: 133px;
+  max-width: 120px;
 }
 .tdf10{
-  max-width: 133px;
+  max-width: 120px;
+}
+.tdf11{
+  max-width: 130px;
+}
+.tdf12{
+  max-width: 100px;
 }
  
 
@@ -201,12 +209,12 @@ td {
   width:96px;
 }
 .tdu2{
-  max-width: 125px;
-  width: 125px;
+  max-width: 140px;
+  width: 140px;
 }
 .tdu3{
-  max-width: 220px;
-  width: 220px;
+  max-width: 200px;
+  width: 200px;
 }
 .tdu4{
   max-width: 97px;

@@ -233,6 +233,130 @@ Lorem, ipsum dolor.
     </div>
 
 
+    
+      <!--Reviews-->
+      <div id="reviews">
+        <div class="reviews-container">
+          <header class="reviews-header">
+            <h2>Client Reviews</h2>
+          </header>
+          <div class="reviewsbox-container">
+            <div class="reviews-box">
+              <img src="images/r1.png" alt="" />
+              <div>
+                <p>
+                  <span class="reviewsbox-span"> Ahmad:</span>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Aspernatur.
+                </p>
+              </div>
+            </div>
+            <div class="reviews-box">
+              <img src="images/r2.png" alt="" />
+              <div>
+                <p>
+                  <span class="reviewsbox-span"> Zana:</span>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Aspernatur.
+                </p>
+              </div>
+            </div>
+            <div class="reviews-box">
+              <img src="images/r3.png" alt="" />
+              <div>
+                <p>
+                  <span class="reviewsbox-span"> Darya:</span>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Aspernatur.
+                </p>
+              </div>
+            </div>
+            <div class="reviews-box">
+              <img src="images/r4.png" alt="" />
+              <div>
+                <p>
+                  <span class="reviewsbox-span"> Paywand:</span>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Aspernatur.
+                </p>
+              </div>
+            </div>
+            <div class="reviews-box">
+              <img src="images/r5.png" alt="" />
+              <div>
+                <p>
+                  <span class="reviewsbox-span"> Nova:</span>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Aspernatur.
+                </p>
+              </div>
+            </div>
+            <div class="reviews-box">
+              <img src="images/r6.png" alt="" />
+              <div>
+                <p>
+                  <span class="reviewsbox-span"> Rawand:</span>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Aspernatur.
+                </p>
+              </div>
+            </div>
+          </div>
+          <footer class="reviews-footer">
+            <p>For more reviews <a href="">Click here</a></p>
+            <p>
+              Want to add a review or give us a feedback?<a href="">
+                Click here</a
+              >
+            </p>
+          </footer>
+        </div>
+      </div>
+
+      <!--Feedback-->
+      <div id="feedback">
+        <div class="feedback-container">
+          <div class="feedback-header">
+            <h2>Give us your feedback</h2>
+          </div>
+          <div class="feedback-caption">
+            <p>
+              please <span>Login</span> first to add your feedback,<br />
+              if you don't have an account <a href="#signup">click here</a> to
+              make one.
+            </p>
+          </div>
+          <div class="feedbackform-container">
+            <form class="feedback-form" action="">
+              <label class="feedbackform-label" for="username">Username</label>
+              <input
+                class="feedbackform-input"
+                type="text"
+                placeholder="Username"
+                required
+              />
+              <label class="feedbackform-label" for="password">Password</label>
+              <input
+                class="feedbackform-input"
+                type="pass"
+                placeholder="Password"
+                required
+              />
+              <label class="textarea-label" for="textarea"
+                >Enter your opinion here:
+              </label>
+              <textarea
+                name="feedback"
+                rows="5"
+                placeholder="Enter your opinion here"
+              ></textarea>
+              <button type="submit">SUBMIT</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
     <!--About Us-->
     <footer id="about">
       <div class="about-container">

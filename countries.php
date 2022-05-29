@@ -53,7 +53,7 @@
           <button type="submit" name="book" >Book</button>
           <input id="pid" name="pid" hidden />
           <input id="uid" name="uid" hidden />
-          <input id="snumber" name="snumber" hidden />
+          <input id="snumber" name="snumber" hidden/>
         </form>
       </div>
     </div>
@@ -115,7 +115,7 @@
             <h2>Payment</h2>
           </header>
           <div class="paymentform-container">
-            <form class="payment-form" action="" method="POST">
+            <form class="payment-form" action="" method="POST" id="payment-form">
               <label class="payment-label" for="name">CARDHOLDER'S NAME</label>
               <input class="payment-input" name="card-name" type="text" placeholder="Name on card" required/>
               <label class="payment-label" for="cardnumber">CARD NUMBER</label>
@@ -136,7 +136,7 @@
                 </div>
               </div>
               <button class="payment-button" name="paynow">Pay Now</button>
-              <input id="payput" name="puid" />
+              <input id="payput" name="puid" hidden/>
 
             </form>
           </div>
